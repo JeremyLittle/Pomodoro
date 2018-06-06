@@ -40,6 +40,23 @@ export default class EnterTasks extends Component {
     this.setState({ isClicked: false });
   };
 
+  handleSubmit = () => {
+    if (this.state.tasks === null) {
+      console.log("Please input some tasks!");
+    } else {
+      this.handleClick();
+      this.setisClickedFalse();
+      this.setState({ tasks: [] });
+      let taskRef = firebase.database().ref("tasks");
+      const thesetasks = {
+        tasks: this.state.tasks
+      };
+      taskRef.push(thesetasks);
+    }
+    // console.log(firebase.auth().currentUser.uid);
+    // firebase.auth().currentUser.uid.set(this.state.tasks);
+  };
+
   addEnterLine = () => {
     let newEnter = this.state.enter;
     newEnter.push(
@@ -74,6 +91,9 @@ export default class EnterTasks extends Component {
           Add task
         </Button>
         {this.state.enter.map(comp => comp)}
+        <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleSubmit}>
+          Submit tasks
+        </Button>
       </div>
     );
   }
