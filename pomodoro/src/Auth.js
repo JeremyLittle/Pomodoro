@@ -1,7 +1,9 @@
-import { ref, firebaseAuth } from "./Firebase.js";
+import { ref, firebaseAuth } from './Firebase.js';
+import firebase from './Firebase.js';
 
-export function auth(email, pw) {
-  return firebaseAuth().createUserWithEmailAndPassword(email, pw);
+export function auth (email, pw) {
+
+ return firebaseAuth().createUserWithEmailAndPassword(email, pw);
 }
 
 export function logout() {
