@@ -15,7 +15,7 @@ let config = {
     
 function writeUserData(name, cycles) {
     let postListRef = firebase.database().ref('/users')  // Has to match what the other do
-    let newPostRef = postListRef.push();  //.push for list auto-key list
+    let newPostRef = postListRef.push(name);  //.push for list auto-key list
     newPostRef.set({
         name: name,
         cycles : cycles
@@ -35,10 +35,12 @@ export default class Firebase extends Component {
     onSubmit = (fields) => {
         let name = fields.name;
         let cycles = fields.cycles;
+        cycles = parseInt(cycles);
         writeUserData(name,cycles);
     }
     componentDidMount(){  // Lower case  and keeps updating the data even though it only runs once?
-        rootRef.on('value', (snapshot) => {
+        rootRef.orderByChild("cycles").on('value', (snapshot) => {
+            console.log(snapshot.val());
             let fArray = [];
             snapshot.forEach(function(user) {  //forEach because not an array
                 let obj = {id : user.key, data : user.val()}; // need those brackets again for con.key if key. Also key does not have ()

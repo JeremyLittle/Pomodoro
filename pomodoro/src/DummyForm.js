@@ -22,12 +22,11 @@ export default class DummyForm extends Component {
         this.setState({name: "",
                     cycles: 0});
     }
-
   render(){
     return (
     
       <div className="Form">
-        <h1> Gimme Dat Info </h1>
+        <h1> Dumb Form </h1>
         <form>
         <div>
             <label> Name: </label>
