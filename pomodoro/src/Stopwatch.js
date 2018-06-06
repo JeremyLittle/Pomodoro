@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import ReactCountdownClock from 'react-countdown-clock';
+import ReactCountdownClock from 'react-countdown-clock'; // https://www.npmjs.com/package/react-countdown-clock
+import { Button } from 'react-bootstrap';
 
-const breakSeconds = 2;
-const workSeconds = 4;
+const breakSeconds = 2;  //Break timer
+const workSeconds = 4;   // Work timer
 
 export default class Stopwatch extends Component {
     constructor(props){
@@ -17,11 +18,11 @@ export default class Stopwatch extends Component {
         
     }
 
-    pauseClick = e => {
+    pauseClick = e => {  //Flip state on pause button
         this.setState({isPaused:!this.state.isPaused});
     }
     
-    switchTime= e => {
+    switchTime= e => {   // Function for switching the timer type
         if(this.state.clockType === "Work"){
         this.setState({
             isPaused: true,
@@ -29,7 +30,7 @@ export default class Stopwatch extends Component {
             clockType: "Break"
             });
         }
-        else {
+        else {     
         let newCycles = this.state.cycles + 1;
         this.setState({
             isPaused: true,
@@ -39,8 +40,6 @@ export default class Stopwatch extends Component {
         });
         };
     }
-    
-
     render(){
         console.log(this.state)
         return(
@@ -48,13 +47,14 @@ export default class Stopwatch extends Component {
                 <ReactCountdownClock seconds={this.state.seconds} //Imported react component
                 color="#000"
                 alpha={0.9}
+                weight= {3}
                 size={100}
-                onComplete = {e=>this.switchTime(e)}
-                paused = {this.state.isPaused}
+                onComplete = {e=>this.switchTime(e)}  // Complete callback
+                paused = {this.state.isPaused}   // Pause timer
                 /* pausedText = {this.state.pauseString} */
                 />
                 <h4> {this.state.clockType} time </h4>
-                <button name="pause" onClick ={e=>this.pauseClick(e)}> Start/Stop </button>
+                <Button name="pause" onClick ={e=>this.pauseClick(e)}> Pause </Button>
             </div>
         );
     }
