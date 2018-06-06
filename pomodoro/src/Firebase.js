@@ -1,5 +1,5 @@
-import * as firebase from 'firebase';
-import 'firebase/auth';
+import * as firebase from "firebase";
+import "firebase/auth";
 
 const config = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY, //'AIzaSyDrsrZyL1WB9dPyuxGWF8toSqHvnXK1hQE'
@@ -14,3 +14,7 @@ const config = {
   export const ref = firebase.database().ref();
   export const firebaseAuth = firebase.auth;
 
+
+export const ref = firebase.database().ref();
+export const firebaseAuth = firebase.auth;
+export default firebase;

@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import {ButtonToolbar} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
@@ -6,23 +7,20 @@ import { login } from './Auth.js';
 import tomato from './pomodoro.png';
 import { logout } from './Auth.js';
 
-export default class Login extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            username: "",
-            password: ""
-        }
-    }
-    updateField(field, value){
-        this.setState({
-            [field]: value
-        });
-    }
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
+  }
 
-    handleClick = e => {
-        login(this.state.username, this.state.password);
-    }
+  updateField = (field, value) => {
+    this.setState({
+      [field]: value
+    });
+  };
 
     render(){
         return(

@@ -1,23 +1,24 @@
-import React, {Component} from 'react';
-import {ButtonToolbar} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import firebase from './Firebase.js';
-import { auth } from './Auth.js';
+import React, { Component } from "react";
+import { ButtonToolbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import firebase from "./Firebase.js";
+import { auth } from "./Auth.js";
 
 export default class Register extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            username: "",
-            password: "",
-            alert: false
-        }
-    }
-    updateField(field, value){
-        this.setState({
-            [field]: value
-        });
-    }
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+      alert: false
+    };
+  }
+  updateField(field, value) {
+    this.setState({
+      [field]: value
+    });
+  }
 
     handleClick = e =>{
             auth(this.state.username, this.state.password).then((user)=>{
@@ -74,3 +75,5 @@ export default class Register extends Component {
         );
     }
 }
+
+
