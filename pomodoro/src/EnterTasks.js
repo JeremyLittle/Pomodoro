@@ -8,7 +8,7 @@ import {
   HelpBlock,
   Button
 } from "react-bootstrap";
-import firebase from "./firebase.js";
+import firebase from "./Firebase.js";
 
 export default class EnterTasks extends Component {
   constructor(props) {

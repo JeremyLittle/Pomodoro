@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ButtonToolbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import firebase from "./firebase.js";
+import firebase from "./Firebase.js";
 import { auth } from "./Auth.js";
 
 export default class Register extends Component {
