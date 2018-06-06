@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactCountdownClock from 'react-countdown-clock';
 
-const breakSeconds = 60 * 5;
-const workSeconds = 60 * 25;
+const breakSeconds = 2;
+const workSeconds = 4;
 
 export default class Stopwatch extends Component {
     constructor(props){
@@ -10,7 +10,7 @@ export default class Stopwatch extends Component {
         this.state = ({
             isPaused: true,
             clockType: "Work",
-            seconds: 5,
+            seconds: workSeconds,
             cycles: 0,
 
         })
@@ -22,26 +22,27 @@ export default class Stopwatch extends Component {
     }
     
     switchTime= e => {
-        if(this.state.clockType == "Work"){
+        if(this.state.clockType === "Work"){
         this.setState({
             isPaused: true,
-            seconds: 5,
+            seconds: breakSeconds,
             clockType: "Break"
-            })
+            });
         }
         else {
         let newCycles = this.state.cycles + 1;
         this.setState({
             isPaused: true,
-            seconds: 10,
+            seconds: workSeconds,
             cycles: newCycles,
             clockType: "Work",
-        })
+        });
         };
     }
     
 
     render(){
+        console.log(this.state)
         return(
             <div float= 'center'>
                 <ReactCountdownClock seconds={this.state.seconds} //Imported react component
