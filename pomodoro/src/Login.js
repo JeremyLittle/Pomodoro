@@ -3,6 +3,8 @@ import {ButtonToolbar} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import firebase from './Firebase.js';
 import { login } from './Auth.js';
+import tomato from './pomodoro.png';
+import { logout } from './Auth.js';
 
 export default class Login extends Component{
     constructor(props){
@@ -25,8 +27,9 @@ export default class Login extends Component{
     render(){
         return(
             <div className = "loginform">
+                <img src={tomato} className = "tomato"/>
                 <div className = "loginbox">
-                    Email: 
+                    Email:  
                     <input
                         name = "username"
                         id = "usernameinput"
@@ -53,6 +56,10 @@ export default class Login extends Component{
                             Register {" "}
                         </button> 
                         </Link>
+                        <button onClick = {logout}>
+                            {" "}
+                            Log out {" "}
+                        </button>
                     </ButtonToolbar>
                 </div>
             </div>
