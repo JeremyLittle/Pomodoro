@@ -33,7 +33,6 @@ export default class Firebase extends Component {
     }
 
     onSubmit = (fields) => {
-        console.log(fields.name);
         let name = fields.name;
         let cycles = fields.cycles;
         writeUserData(name,cycles);
@@ -41,13 +40,11 @@ export default class Firebase extends Component {
     componentDidMount(){  // Lower case  and keeps updating the data even though it only runs once?
         rootRef.on('value', (snapshot) => {
             let fArray = [];
-            snapshot.forEach(function(user) {
-                console.log(user.key);  //forEach because not an array
+            snapshot.forEach(function(user) {  //forEach because not an array
                 let obj = {id : user.key, data : user.val()}; // need those brackets again for con.key if key. Also key does not have ()
                  fArray.push(obj);  // Gives nested object
                 }); 
             this.setState({fireUsers: fArray})
-            console.log(this.state.fireUsers);
         });    
     }
     
