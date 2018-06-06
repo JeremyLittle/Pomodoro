@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import App from './App.js';
+import Login from './Login.js';
 import {BrowserRouter, Route, Link,Redirect} from 'react-router-dom'
 
 export default class RouteC extends Component{
@@ -8,8 +9,9 @@ export default class RouteC extends Component{
         return(
             <BrowserRouter>
                 <div>
-                    <Redirect to = '/App'/>
+                    <Redirect to = '/Login'/>
                     <Route path = "/App" component = {App}/>
+                    <Route path = "/Login" component = {Login}/>
                 </div>
             </BrowserRouter>
         )
