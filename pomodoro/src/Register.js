@@ -9,7 +9,8 @@ export default class Register extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      alert: false
     };
   }
   updateField(field, value) {
@@ -19,13 +20,49 @@ export default class Register extends Component {
   }
 
   handleClick = e => {
-    e.preventDefault();
-    auth(this.state.username, this.state.password);
+    auth(this.state.username, this.state.password).then(user => {
+      console.log(user);
+      if (user) {
+        console.log(this.state);
+        console.log(user.user.uid);
+        let userID = user.user.uid;
+        let newPostKey = firebase
+          .database()
+          .ref("/users/" + userID)
+          .child("info")
+          .push().key;
+        let updates = {};
+        updates["/info/" + newPostKey] = this.state.username;
+        this.setState({
+          username: "",
+          password: ""
+        });
+        return firebase
+          .database()
+          .ref("/users/" + userID)
+          .update(updates);
+      }
+    });
+
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+      if (user === null) {
+        this.setState({
+          alert: true
+        });
+      }
+    });
+  };
+
+  alertFail = () => {
+    alert("Yo you failed");
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="registerform">
+        {this.state.alertFail && this.alertFail()}
         <input
           name="username"
           id="usernameinput"
@@ -40,10 +77,10 @@ export default class Register extends Component {
         />
         <ButtonToolbar>
           <Link to="./Login">
-            <button> Log In </button>
+            <button>Log In</button>
           </Link>
           <Link to="./Register">
-            <button onClick={e => this.handleClick(e)}> Register </button>
+            <button onClick={e => this.handleClick(e)}>Register</button>
           </Link>
         </ButtonToolbar>
       </div>

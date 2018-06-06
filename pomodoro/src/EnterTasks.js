@@ -48,10 +48,13 @@ export default class EnterTasks extends Component {
       this.setisClickedFalse();
       this.setState({ tasks: [] });
       let taskRef = firebase.database().ref("tasks");
-      const thesetasks = {
+      taskRef.child("firstset").set({
         tasks: this.state.tasks
-      };
-      taskRef.push(thesetasks);
+      });
+      // const thesetasks = {
+      //   tasks: this.state.tasks
+      // };
+      // taskRef.push(thesetasks);
     }
     // console.log(firebase.auth().currentUser.uid);
     // firebase.auth().currentUser.uid.set(this.state.tasks);
