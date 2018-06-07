@@ -4,11 +4,10 @@ import App from "./App.js";
 import Login from "./Login.js";
 import Register from "./Register.js";
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
-import EnterTasks from "./EnterTasks.js";
+import Timer from "./Timer";
 import firebase from "./Firebase.js";
 import Profile from "./Profile.js";
 import ImageDrop from "./ImageDrop";
-import Timer from "./Timer.js";
 import Leaderboard from "./Leaderboard.js";
 
 export default class RouteC extends Component {
