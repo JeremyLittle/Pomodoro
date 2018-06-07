@@ -10,7 +10,7 @@ export default class CompletedTasks extends Component {
   }
 
   convertToDate = ms => {
-    let dateString = Date(ms);
+    let dateString = new Date(ms);
     return dateString.toString();
   };
 

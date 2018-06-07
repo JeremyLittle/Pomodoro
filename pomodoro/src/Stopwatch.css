@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
-.center{
-    margin: auto;
-    border: 8px solid #91a3f5;
-    padding: 8px;
-    width:300px;
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
+.center {
+  margin: auto;
+  border: 8px solid #d16429;
+  padding: 8px;
+  width: 300px;
 }
-.text{
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 20px;
+.text {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 20px;
 }
