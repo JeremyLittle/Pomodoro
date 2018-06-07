@@ -32,9 +32,14 @@ export default class EnterTasks extends Component {
 
   handleClick = e => {
     if (this.state.value !== null) {
-      let newTask = this.state.tasks;
-      newTask.push(this.state.value);
-      this.setState({ tasks: newTask });
+      let newTaskList = this.state.tasks;
+      let newStr = this.state.value;
+      let newObj = {
+        type: newStr,
+        time: Date.now()
+      };
+      newTaskList.push(newObj);
+      this.setState({ tasks: newTaskList });
     }
     this.setState({ isClicked: true });
   };
@@ -50,9 +55,13 @@ export default class EnterTasks extends Component {
       this.handleClick();
       this.setisClickedFalse();
       this.setState({ tasks: [] });
-      let taskRef = firebase.database().ref("tasks");
-      taskRef.child("firstset").set({
-        tasks: this.state.tasks
+      this.state.tasks.map(obj => {
+        let taskRef = firebase
+          .database()
+          .ref(firebase.auth().currentUser.uid)
+          .child("tasks")
+          .child(obj.type)
+          .set(obj.time);
       });
       // const thesetasks = {
       //   tasks: this.state.tasks

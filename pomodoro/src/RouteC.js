@@ -13,7 +13,7 @@ export default class RouteC extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Redirect to="/timer" />
+          <Redirect to="/login" />
           <Route path="/timer" component={Timer} />
           <Route path="/entertasks" component={EnterTasks} />
           <Route path="/app" component={App} />

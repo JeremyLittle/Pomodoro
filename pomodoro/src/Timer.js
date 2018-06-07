@@ -1,8 +1,15 @@
 import React, { Component } from "react";
-import EnterTasks from "./EnterTasks";
+import EnterTasks from "./EnterTasks.js";
+import CompletedTasks from "./CompletedTasks.js";
 
 export default class Timer extends Component {
   render() {
-    return <EnterTasks />;
+    return (
+      <div>
+        <EnterTasks />
+        <br />
+        <CompletedTasks />
+      </div>
+    );
   }
 }

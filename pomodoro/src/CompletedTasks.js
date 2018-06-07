@@ -12,13 +12,14 @@ export default class CompletedTasks extends Component {
   componentDidMount() {
     const usersRef = firebase
       .database()
-      .ref("tasks/-LELVSdY7T2xYJSUPSrp/tasks");
+      .ref(firebase.auth().currentUser.uid + "/tasks");
     usersRef.on("value", snapshot => {
       let tasks = snapshot.val();
       let newState = [];
       for (let task in tasks) {
         let newTask = {
-          name: tasks[task]
+          name: task,
+          time: tasks[task]
         };
         newState.push(newTask);
       }
@@ -34,7 +35,9 @@ export default class CompletedTasks extends Component {
         {this.state.userTasks.map(task => {
           return (
             <div>
-              Name: {task.name} <br />
+              Name: {task.name}
+              <br />
+              Time: {task.time}
             </div>
           );
         })}
