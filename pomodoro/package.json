@@ -3,10 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "format-duration": "^1.1.0",
+=======
+
+    "antd": "^3.6.1",
+    "firebase": "^5.0.4",
+>>>>>>> 011a4a34951f8f4d15fcc4cf9529c4dd870b3d91
     "react": "^16.4.0",
+    "react-countdown-clock": "^2.4.0",
+    "firebase": "^5.0.4",
+    "react": "^16.4.0",
+    "react-bootstrap": "^0.32.1",
+
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.3.0",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
