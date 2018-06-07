@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import ReactCountdownClock from 'react-countdown-clock'; // https://www.npmjs.com/package/react-countdown-clock
-import { Button } from 'react-bootstrap';
+import ReactCountdownClock from 'react-countdown-clock'; // https://www.npmjs.com/package/react-countdown-clocks
 import "./Stopwatch.css";
-import { Row } from 'react-bootstrap';
-import {Grid} from 'react-bootstrap';
-import {Col} from 'react-bootstrap';
+
 
 const breakSeconds = 2;  //Break timer
 const workSeconds = 4;   // Work timer
@@ -17,6 +14,7 @@ export default class Stopwatch extends Component {
             clockType: "Work",
             seconds: workSeconds,
             cycles: 0,
+            startorStop: "Start"
 
         })
         
@@ -24,6 +22,10 @@ export default class Stopwatch extends Component {
 
     pauseClick = e => {  //Flip state on pause button
         this.setState({isPaused:!this.state.isPaused});
+        if(isPaused == true){  // Check for which button string to display
+            this.setState({startorStop: "Start"})
+        }
+        else{ this.setState({startorStop:"Stop"})}
     }
     
     switchTime= e => {   // Function for switching the timer type
@@ -50,7 +52,7 @@ export default class Stopwatch extends Component {
             <div className= "center">
                 <Grid>
                 <Row>
-                    <Col xs= {9} md ={4}>
+                    <Col  md ={2}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
                     color="#000"
                     alpha={0.9}
@@ -61,9 +63,10 @@ export default class Stopwatch extends Component {
                     /* pausedText = {this.state.pauseString} */
                     />
                     </Col>
-                    <Col xs ={3} md={4}>
+                    <Col  md={4}>
                     <h4> {this.state.clockType} time </h4>
-                    <Button name="pause" onClick ={e=>this.pauseClick(e)}> Start/Stop </Button>
+                    <Button bsStyle = "info"
+                    onClick ={e=>this.pauseClick(e)}> Start/Stop </Button>
                     </Col>
                 </Row>
                 </Grid>
