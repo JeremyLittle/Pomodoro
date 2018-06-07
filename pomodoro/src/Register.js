@@ -17,11 +17,12 @@ export default class Register extends Component {
       age: ""
     };
   }
-  updateField(field, value) {
+
+  updateField = (field, value) => {
     this.setState({
       [field]: value
     });
-  }
+  };
 
   emptyInputs=()=>{
       if(this.state.name === "" || this.state.age === "" || this.state.gender === ""){
