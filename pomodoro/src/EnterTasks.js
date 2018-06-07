@@ -10,6 +10,7 @@ import {
   Button,
   Alert
 } from "react-bootstrap";
+import CompletedTasks from "./CompletedTasks";
 import firebase from "./Firebase.js";
 import { logout } from "./Auth.js";
 
@@ -74,24 +75,6 @@ export default class EnterTasks extends Component {
     this.setState({ enter: newEnter });
   };
 
-  handleSubmit = () => {
-    if (this.state.tasks.length === 0) {
-      this.setState({ badSubmit: true });
-    } else {
-      this.handleClick();
-      this.setisClickedFalse();
-      this.setState({ tasks: [] });
-      this.state.tasks.map(obj => {
-        let newPostKey = firebase
-          .database()
-          .ref(firebase.auth().currentUser.uid)
-          .child("tasks")
-          .child(obj.type)
-          .set(obj.time);
-      });
-    }
-  };
-
   logout = () => {
     firebase
       .auth()
@@ -121,6 +104,7 @@ export default class EnterTasks extends Component {
     }
     return (
       <div>
+        <CompletedTasks />
         <ControlLabel>Enter completed tasks below:</ControlLabel>
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleClick}>
           Add task

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import ReactCountdownClock from "react-countdown-clock"; // https://www.npmjs.com/package/react-countdown-clocks
 import "./Stopwatch.css";
+import "antd/dist/antd.css";
+import { Button, Col, Row } from "antd";
+import firebase from "./Firebase.js";
 
 const breakSeconds = 2; //Break timer
 const workSeconds = 4; // Work timer
 
+let cyclesRef = firebase.database().ref();
 export default class Stopwatch extends Component {
   constructor(props) {
     super(props);
@@ -48,27 +52,43 @@ export default class Stopwatch extends Component {
       });
     }
   };
+  updateFireCycles = () => {
+    // For pushing cycle counter to user cycle tracker on firebase
+    let taskRef = firebase
+      .database()
+      .ref(firebase.auth().currentUser.uid)
+      .child("cycles")
+      .set(this.state.cycles);
+  };
   render() {
+    console.log(this.state);
+    this.updateFireCycles();
     return (
       <div className="center">
-        <div md={2}>
-          <ReactCountdownClock
-            seconds={this.state.seconds} //Imported react component
-            color="#000"
-            alpha={0.9}
-            weight={3}
-            size={100}
-            onComplete={e => this.switchTime(e)} // Complete callback
-            paused={this.state.isPaused} // Pause timer
-          />
-        </div>
-        <div md={4}>
-          <h4> {this.state.clockType} time </h4>
-          <button bsStyle="info" onClick={e => this.pauseClick(e)}>
-            {" "}
-            {this.state.startorStop}{" "}
-          </button>
-        </div>
+        <h2 align="Center" className="text" style={{ "font-size": "35px" }}>
+          {" "}
+          Cycle Timer
+        </h2>
+        <Row type="flex" justify="space-between" align="middle">
+          <Col span={8}>
+            <ReactCountdownClock
+              seconds={this.state.seconds} //Imported react component
+              color="#000"
+              alpha={0.9}
+              weight={3}
+              size={100}
+              onComplete={e => this.switchTime(e)} // Complete callback
+              paused={this.state.isPaused} // Pause timer
+            />
+          </Col>
+          <Col span={8}>
+            <h4 className="text"> {this.state.clockType} period!</h4>
+            <Button type="primary" onClick={e => this.pauseClick(e)}>
+              {" "}
+              {this.state.startorStop}{" "}
+            </Button>
+          </Col>
+        </Row>
       </div>
     );
   }

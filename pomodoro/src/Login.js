@@ -16,17 +16,30 @@ export default class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    this.checkUser();
+  }
+
   updateField = (field, value) => {
     this.setState({
       [field]: value
     });
   };
 
-  signOut = () => {
+  signIn = () => {
+    console.log(this.state);
     firebase
       .auth()
-      .signInWithEmailAndPassword(this.state.username, this.state.password);
+      .signInWithEmailAndPassword(this.state.username, this.state.password)
+      .catch(error => {
+        alert("Login failed - " + error.message);
+      });
+    this.checkUser();
+  };
+
+  checkUser = () => {
     firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
       if (user !== null) {
         this.setState({
           user: true
@@ -38,12 +51,10 @@ export default class Login extends Component {
   };
 
   render() {
+    console.log(this.state);
     if (this.state.user) {
       return <Redirect to="/timer" />;
     }
-    // else if (this.state.user === false) {
-    //   return <div> Username or password is incorrect </div>;
-    // }
     return (
       <div className="loginform">
         <img src={tomato} className="tomato" />
@@ -65,7 +76,7 @@ export default class Login extends Component {
             onChange={e => this.updateField("password", e.target.value)}
           />
           <br />
-          <button id="loginbut" onClick={this.signOut}>
+          <button id="loginbut" onClick={this.signIn}>
             {" "}
             Log In{" "}
           </button>

@@ -21,23 +21,31 @@ export default class Register extends Component {
   };
 
   handleClick = e => {
-    auth(this.state.username, this.state.password).then(user => {
-      if (user) {
-        let userID = user.user.uid;
-        let obj = {
-          email: this.state.username,
-          tasks: "",
-          cycles: "",
-          age: "",
-          gender: "",
-          password: this.state.password
-        };
-        let newPostKey = firebase
-          .database()
-          .ref(userID)
-          .set(obj);
-      }
-    });
+    auth(this.state.username, this.state.password)
+      .then(user => {
+        console.log(user);
+        if (user) {
+          console.log(this.state);
+          console.log(user.user.uid);
+          let userID = user.user.uid;
+          let obj = {
+            email: this.state.username,
+            tasks: "",
+            cycles: "",
+            age: "",
+            gender: "",
+            birthday: "",
+            password: this.state.password
+          };
+          let newPostKey = firebase
+            .database()
+            .ref(userID)
+            .set(obj);
+        }
+      })
+      .catch(error => {
+        alert("Registration error: " + error.message);
+      });
   };
 
   render() {
@@ -46,7 +54,7 @@ export default class Register extends Component {
       <div className="registerform">
         <div className="registerbox">
           <h1 id="registertitle"> Register </h1>
-          {this.state.alertFail && this.alertFail()}
+          {this.state.alert && this.alertFail()}
           Email:
           <input
             name="username"
