@@ -1,11 +1,8 @@
 import React, { Component } from "react";
+import EnterTasks from "./EnterTasks";
 
-class Timer extends Component {
-  state = {};
-
+export default class Timer extends Component {
   render() {
-    return <div>Hello</div>;
+    return <EnterTasks />;
   }
 }
-
-export default Timer;
