@@ -9,7 +9,6 @@ import {
   HelpBlock,
   Button
 } from "react-bootstrap";
-import CompletedTasks from "./CompletedTasks";
 import firebase from "./Firebase.js";
 import { logout } from "./Auth.js";
 export default class EnterTasks extends Component {
@@ -119,7 +118,6 @@ export default class EnterTasks extends Component {
     }
     return (
       <div>
-        <CompletedTasks />
         <ControlLabel>Enter completed tasks below:</ControlLabel>
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleClick}>
           Add task
