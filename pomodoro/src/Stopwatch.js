@@ -8,18 +8,17 @@ import firebase from './Firebase.js';
 const breakSeconds = 2;  //Break timer
 const workSeconds = 4;   // Work timer
 
-let cyclesRef = firebase.database().ref();
+
 export default class Stopwatch extends Component {
     constructor(props){
         super(props);
-        this.state = ({
-            isPaused: true,
-            clockType: "Work",
-            seconds: workSeconds,
-            cycles: 0,
-            startorStop: "Start"
-
-        })   
+            this.state = ({
+                isPaused: true,
+                clockType: "Work",
+                seconds: workSeconds,
+                cycles: 0,
+                startorStop: "Start"
+            }) 
     }
     pauseClick = e => {  //Flip state on pause button
         this.setState({isPaused:!this.state.isPaused});
@@ -28,7 +27,13 @@ export default class Stopwatch extends Component {
         }
         else{ this.setState({startorStop:"Start"})};
     }
-    
+    updateFireCycles= () =>{ // For pushing cycle counter to user cycle tracker on firebase
+        let cyclesRef = firebase  
+          .database()
+          .ref(firebase.auth().currentUser.uid)
+          .child("cycles")
+          .set(this.state.cycles);
+    }
     switchTime= e => {   // Function for switching the timer type
         if(this.state.clockType === "Work"){
         this.setState({
@@ -47,21 +52,21 @@ export default class Stopwatch extends Component {
             clockType: "Work",
             startorStop: "Start"
         });
+        this.updateFireCycles();
         };
     }
-    updateFireCycles= () =>{ // For pushing cycle counter to user cycle tracker on firebase
-        let taskRef = firebase  
-          .database()
-          .ref(firebase.auth().currentUser.uid)
-          .child("cycles")
-          .set(this.state.cycles);
+    componentDidMount(){  // Check spelling ya dunce
+        const userRef= firebase.database()
+        .ref(firebase.auth().currentUser.uid +"/cycles");
+            userRef.on("value", snapshot => {
+               this.setState({ cycles: snapshot.val()
+               });
+            });
     }
     render(){
-        console.log(this.state);
-        this.updateFireCycles();
         return(
             <div className= "center">
-                <h2 align= "Center" className = "text" style={{"font-size":"35px"}}> Cycle Timer</h2>
+                <h2 align= "center" className = "text" style={{"font-size":"35px"}}> Cycle Timer</h2>
                 <Row type = "flex" justify= "space-between" align = "middle">
                 <Col span={8}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
