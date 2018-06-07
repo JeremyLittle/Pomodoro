@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import ReactCountdownClock from 'react-countdown-clock'; // https://www.npmjs.com/package/react-countdown-clocks
 import "./Stopwatch.css";
 import 'antd/dist/antd.css';
-import { Button } from 'antd';
-import {Row} from 'antd';
-import {Col} from 'antd';
+import { Button, Col, Row } from 'antd';
 
 const breakSeconds = 2;  //Break timer
 const workSeconds = 4;   // Work timer
