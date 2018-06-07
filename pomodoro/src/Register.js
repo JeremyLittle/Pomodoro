@@ -27,14 +27,30 @@ export default class Register extends Component {
                     console.log(this.state)
                     console.log(user.user.uid)
                     let userID = user.user.uid;
-                    let newPostKey = firebase.database().ref("/users/"+userID).child('info').push().key
-                    let updates = {};
-                    updates['/info/'+newPostKey]=this.state.username;
+                    let obj = {
+                        email: this.state.username,
+                        tasks: "",
+                        cycles: "",
+                        age: "",
+                        gender: "",
+                        password: this.state.password
+                    }
+                    let newPostKey = firebase.database().ref(userID).set(obj);
+                    /*let updates = {};
+                    let obj = {
+                        email: this.state.username,
+                        tasks: "",
+                        cycles: "",
+                        age: "",
+                        gender: "",
+                        password: this.state.password
+                    }
+                    updates[newPostKey]=obj
                     this.setState({
                         username: "",
                         password: ""
                     })
-                    return firebase.database().ref("/users/"+userID).update(updates);
+                    return firebase.database().ref(userID).update(updates);*/
                 }
             });
     }
