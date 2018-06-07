@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import "./Leaderboard.css";
 import "./p.css";
 import LeaderBoardForm from "./LeaderBoardForm";
-import Firebase from "./Firebase";
+import firebase from "./Firebase";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
