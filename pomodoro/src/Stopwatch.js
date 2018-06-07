@@ -5,10 +5,10 @@ import 'antd/dist/antd.css';
 import { Button, Col, Row } from 'antd';
 import firebase from './Firebase.js';
 
-const breakSeconds = 60*5;  //Break timer
-const workSeconds = 60*25;   // Work timer
+const breakSeconds = 2;  //Break timer
+const workSeconds = 4;   // Work timer
 
-
+let cyclesRef = firebase.database().ref();
 export default class Stopwatch extends Component {
     constructor(props){
         super(props);
@@ -49,8 +49,16 @@ export default class Stopwatch extends Component {
         });
         };
     }
+    updateFireCycles= () =>{ // For pushing cycle counter to user cycle tracker on firebase
+        let taskRef = firebase  
+          .database()
+          .ref(firebase.auth().currentUser.uid)
+          .child("cycles")
+          .set(this.state.cycles);
+    }
     render(){
-        console.log(this.state)
+        console.log(this.state);
+        this.updateFireCycles();
         return(
             <div className= "center">
                 <h2 align= "Center" className = "text" style={{"font-size":"35px"}}> Cycle Timer</h2>
