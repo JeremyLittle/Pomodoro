@@ -22,10 +22,7 @@ export default class Register extends Component {
 
   handleClick = e => {
     auth(this.state.username, this.state.password).then(user => {
-      console.log(user);
       if (user) {
-        console.log(this.state);
-        console.log(user.user.uid);
         let userID = user.user.uid;
         let obj = {
           email: this.state.username,
