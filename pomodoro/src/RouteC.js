@@ -4,7 +4,7 @@ import App from "./App.js";
 import Login from "./Login.js";
 import Register from "./Register.js";
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
-import EnterTasks from "./EnterTasks.js";
+import Timer from "./Timer";
 import firebase from "./Firebase.js";
 
 export default class RouteC extends Component {
@@ -12,8 +12,8 @@ export default class RouteC extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Redirect to="/entertasks" />
-          <Route path="/entertasks" component={EnterTasks} />
+          <Redirect to="/timer" />
+          <Route path="/timer" component={Timer} />
           <Route path="/app" component={App} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
