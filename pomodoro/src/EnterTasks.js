@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link, Redirect} from 'react-router-dom';
 import {
   Checkbox,
   Radio,
@@ -9,7 +10,7 @@ import {
   Button
 } from "react-bootstrap";
 import firebase from "./Firebase.js";
-
+import { logout } from './Auth.js';
 export default class EnterTasks extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,8 @@ export default class EnterTasks extends Component {
       value: null,
       tasks: [],
       enter: [],
-      isClicked: false
+      isClicked: false,
+      redirect: false
     };
   }
 
@@ -80,13 +82,27 @@ export default class EnterTasks extends Component {
     this.setState({ enter: newEnter });
   };
 
+    logout = () => {
+    console.log("what")
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      return <Redirect to = '/iEat'/>
+    }).catch(function(error) {
+      // An error happened.
+    });
+    this.setState({
+        redirect: true
+    })
+  }
   render() {
     console.log(this.state.tasks);
     if (this.state.isClicked) {
       this.addEnterLine();
       this.setisClickedFalse();
     }
-
+    if(this.state.redirect){
+      return <Redirect to = '/login'/>
+    }
     return (
       <div>
         <ControlLabel>Enter completed tasks below:</ControlLabel>
@@ -97,6 +113,10 @@ export default class EnterTasks extends Component {
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleSubmit}>
           Submit tasks
         </Button>
+        <button onClick = {this.logout}>
+          {" "}
+          Log out {" "}
+        </button>
       </div>
     );
   }

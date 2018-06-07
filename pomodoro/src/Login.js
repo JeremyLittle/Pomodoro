@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {ButtonToolbar} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import firebase from './Firebase.js';
 import { login } from './Auth.js';
 import tomato from './pomodoro.png';
@@ -12,8 +12,22 @@ export default class Login extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      user: false
     };
+  }
+
+  componentDidMount(){
+    firebase.auth().onAuthStateChanged((user) => {
+        console.log(user)
+        if (user!==null) {
+          this.setState({
+            user: true
+          })
+        } else {
+          user: false
+        }
+      });
   }
 
   updateField = (field, value) => {
@@ -23,6 +37,9 @@ export default class Login extends Component {
   };
 
     render(){
+        if(this.state.user){
+            return <Redirect to = '/entertasks'/>
+        }
         return(
             <div className = "loginform">
                 <img src={tomato} className = "tomato"/>
