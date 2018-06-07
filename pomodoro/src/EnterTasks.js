@@ -19,12 +19,10 @@ export default class EnterTasks extends Component {
     super(props);
     this.state = {
       value: null,
-      tasks: [],
       enter: [],
       isClicked: false,
       redirect: false,
-      badSubmit: false,
-      isChanged: false
+      badSubmit: false
     };
   }
 
@@ -32,47 +30,28 @@ export default class EnterTasks extends Component {
 
   handleChange = e => {
     console.log(this.state.value);
-    this.setState({ value: e.target.value, isChanged: true });
+    this.setState({ value: e.target.value });
   };
 
   handleClick = e => {
-    // this.state.isChanged
     if (this.state.value !== null) {
-      let newTaskList = this.state.tasks;
       let newStr = this.state.value;
       let newObj = { type: newStr, time: Date.now() };
-      newTaskList.push(newObj);
-      this.setState({ tasks: newTaskList });
+      if (newObj.type != "") {
+        let taskRef = firebase
+          .database()
+          .ref(firebase.auth().currentUser.uid)
+          .child("tasks")
+          .child(newObj.type)
+          .set(newObj.time);
+      }
     }
     this.setState({ isClicked: true, value: "" });
     console.log(this.state.value);
-    // if (this.state.value.length >= 0 || this.state.isChanged) {
-    //   this.setState({ isClicked: true });
-    // }
-    // this.setState({ isChanged: false });
   };
 
   setisClickedFalse = () => {
     this.setState({ isClicked: false });
-  };
-
-  addEnterLine = () => {
-    let newEnter = (
-      <form>
-        <FormGroup controlId="formBasicText">
-          <FormControl
-            type="text"
-            placeholder="Enter text"
-            onChange={this.handleChange}
-          />
-          <FormControl.Feedback />
-          <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleClick}>
-            Add another task
-          </Button>
-        </FormGroup>
-      </form>
-    );
-    this.setState({ enter: newEnter });
   };
 
   logout = () => {
@@ -81,7 +60,7 @@ export default class EnterTasks extends Component {
       .signOut()
       .then(function() {
         // Sign-out successful.
-        return <Redirect to="/iEat" />;
+        return <Redirect to="/login" />;
       })
       .catch(function(error) {
         // An error happened.
@@ -93,7 +72,6 @@ export default class EnterTasks extends Component {
 
   render() {
     if (this.state.isClicked) {
-      this.addEnterLine();
       this.setisClickedFalse();
     }
     if (this.state.redirect) {
@@ -106,14 +84,24 @@ export default class EnterTasks extends Component {
       <div>
         <CompletedTasks />
         <ControlLabel>Enter completed tasks below:</ControlLabel>
-        <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleClick}>
-          Add task
-        </Button>
-        {/* {this.state.enter.map(comp => comp)} */}
-        {this.state.enter}
-        <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleSubmit}>
-          Submit tasks
-        </Button>
+        <form>
+          <FormGroup controlId="formBasicText">
+            <FormControl
+              type="text"
+              placeholder="Enter text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+            <FormControl.Feedback />
+            <Button
+              bsStyle="primary"
+              bsSize="xsmall"
+              onClick={this.handleClick}
+            >
+              Add task
+            </Button>
+          </FormGroup>
+        </form>
         <Button onClick={this.logout}> Log out </Button>
       </div>
     );
