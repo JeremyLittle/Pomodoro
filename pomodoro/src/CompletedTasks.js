@@ -9,6 +9,11 @@ export default class CompletedTasks extends Component {
     };
   }
 
+  convertToDate = ms => {
+    let dateString = Date(ms);
+    return dateString.toString();
+  };
+
   componentDidMount() {
     const usersRef = firebase
       .database()
@@ -32,14 +37,18 @@ export default class CompletedTasks extends Component {
   render() {
     return (
       <div>
+        Tasks completed in the last 24 hours:
+        <br />
         {this.state.userTasks.map(task => {
-          return (
-            <div>
-              Name: {task.name}
-              <br />
-              Time: {task.time}
-            </div>
-          );
+          if (Date.now() - task.time < 86400000) {
+            return (
+              <div>
+                -{task.name}
+                <br />
+                Time: {this.convertToDate(task.time)}
+              </div>
+            );
+          }
         })}
       </div>
     );
