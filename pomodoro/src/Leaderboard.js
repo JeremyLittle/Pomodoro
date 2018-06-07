@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import { render } from "react-dom";
 import "./Leaderboard.css";
 import "./p.css";
-import LeaderBoardForm from "./LeaderBoardForm";
+// import LeaderBoardForm from "./LeaderBoardForm";
 import firebase from "./Firebase";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
