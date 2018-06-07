@@ -6,9 +6,9 @@ export default class Timer extends Component {
   render() {
     return (
       <div>
-      <EnterTasks/>
-      <Stopwatch/>
+        <EnterTasks />
+        <Stopwatch />
       </div>
-    )
+    );
   }
 }
