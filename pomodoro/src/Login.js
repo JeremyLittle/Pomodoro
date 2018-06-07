@@ -48,6 +48,12 @@ export default class Login extends Component {
             }
         });
     }
+    onKeyDown = (e) => {
+        if (e.key === 'Enter'){
+            e.preventDefault();
+            this.signIn();
+        }
+    }
 
     render(){
         console.log(this.state)
@@ -73,9 +79,10 @@ export default class Login extends Component {
                         id = "passwordinput"
                         value = {this.state.password}
                         onChange = {e=>this.updateField("password",e.target.value)}
+                        onKeyDown = {(e)=>this.onKeyDown(e)}
                     />
                     <br></br>
-                        <button id = "loginbut" onClick={this.signIn}>
+                        <button id = "loginbut" onClick={this.signIn} >
                             {" "}
                             Log In {" "}
                         </button>

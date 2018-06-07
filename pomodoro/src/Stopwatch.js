@@ -80,6 +80,7 @@ export default class Stopwatch extends Component {
                 </Col>
                     <Col span={8} >
                     <h4 className= "text" > {this.state.clockType} period!</h4>
+                    <p> You are on cycle: {this.state.cycles} </p>
                     <Button type = "primary"
                     onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </Button>
                     </Col>

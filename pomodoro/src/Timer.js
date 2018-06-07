@@ -9,6 +9,8 @@ export default class Timer extends Component {
       <div>
         <EnterTasks />
         <Stopwatch />
+        <Button type = "Danger" name= "Leaderboard"> 
+          Leaderboard </Button>
       </div>
     );
   }
