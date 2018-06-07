@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import EnterTasks from "./EnterTasks";
 import Stopwatch from "./Stopwatch";
 import CompletedTasks from "./CompletedTasks";
+import Topbar from "./Topbar";
 import "./Timer.css";
 
 export default class Timer extends Component {
   render() {
     return (
       <div className="Timer">
+        <Topbar />
+        <br />
         <Stopwatch />
         <br />
         <EnterTasks />
