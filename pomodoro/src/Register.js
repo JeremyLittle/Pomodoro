@@ -46,27 +46,33 @@ export default class Register extends Component {
     console.log(this.state);
     return (
       <div className="registerform">
-        {this.state.alertFail && this.alertFail()}
-        <input
-          name="username"
-          id="usernameinput"
-          value={this.state.username}
-          onChange={e => this.updateField("username", e.target.value)}
-        />
-        <input
-          name="password"
-          id="passwordinput"
-          value={this.state.password}
-          onChange={e => this.updateField("password", e.target.value)}
-        />
-        <ButtonToolbar>
-          <Link to="./Login">
-            <button> Log In </button>
-          </Link>
-          <Link to="./Register">
-            <button onClick={e => this.handleClick(e)}> Register </button>
-          </Link>
-        </ButtonToolbar>
+        <div className="registerbox">
+          <h1 id="registertitle"> Register </h1>
+          {this.state.alertFail && this.alertFail()}
+          Email:
+          <input
+            name="username"
+            id="usernameinput"
+            value={this.state.username}
+            onChange={e => this.updateField("username", e.target.value)}
+          />
+          <br />
+          Password:
+          <input
+            name="password"
+            id="passwordinput"
+            value={this.state.password}
+            onChange={e => this.updateField("password", e.target.value)}
+          />
+          <br />
+          <button id="registerbut" onClick={e => this.handleClick(e)}>
+            {" "}
+            Register{" "}
+          </button>
+        </div>
+        <Link to="./Login">
+          <button> Log In </button>
+        </Link>
       </div>
     );
   }

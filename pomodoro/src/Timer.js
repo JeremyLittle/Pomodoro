@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import EnterTasks from "./EnterTasks.js";
-import CompletedTasks from "./CompletedTasks.js";
+import EnterTasks from "./EnterTasks";
+import Stopwatch from "./Stopwatch";
 
 export default class Timer extends Component {
   render() {
     return (
       <div>
         <EnterTasks />
-        <br />
-        <CompletedTasks />
+        <Stopwatch />
       </div>
     );
   }
