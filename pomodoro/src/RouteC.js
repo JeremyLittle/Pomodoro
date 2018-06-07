@@ -5,10 +5,11 @@ import Login from "./Login.js";
 import Register from "./Register.js";
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import EnterTasks from "./EnterTasks.js";
-import firebase from './Firebase.js';
-import Profile from './Profile.js';
+import firebase from "./Firebase.js";
+import Profile from "./Profile.js";
 import ImageDrop from "./ImageDrop";
 import Timer from "./Timer.js";
+import Leaderboard from "./Leaderboard.js";
 
 export default class RouteC extends Component {
   render() {
@@ -22,7 +23,7 @@ export default class RouteC extends Component {
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
           <Route path="/image" component={ImageDrop} />
-
+          <Route path="/leaderboard" component={Leaderboard} />
         </div>
       </BrowserRouter>
     );
