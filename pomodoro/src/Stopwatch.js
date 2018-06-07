@@ -61,7 +61,6 @@ export default class Stopwatch extends Component {
       .set(this.state.cycles);
   };
   render() {
-    console.log(this.state);
     this.updateFireCycles();
     return (
       <div className="center">

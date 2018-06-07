@@ -27,7 +27,6 @@ export default class Login extends Component {
   };
 
   signIn = () => {
-    console.log(this.state);
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.username, this.state.password)
@@ -39,7 +38,6 @@ export default class Login extends Component {
 
   checkUser = () => {
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
       if (user !== null) {
         this.setState({
           user: true
@@ -51,7 +49,6 @@ export default class Login extends Component {
   };
 
   render() {
-    console.log(this.state);
     if (this.state.user) {
       return <Redirect to="/timer" />;
     }

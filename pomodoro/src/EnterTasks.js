@@ -18,36 +18,30 @@ export default class EnterTasks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: null,
+      value: "",
       enter: [],
       isClicked: false,
-      redirect: false,
-      badSubmit: false
+      redirect: false
     };
   }
 
-  componentDidMount() {}
-
   handleChange = e => {
-    console.log(this.state.value);
     this.setState({ value: e.target.value });
   };
 
   handleClick = e => {
-    if (this.state.value !== null) {
-      let newStr = this.state.value;
-      let newObj = { type: newStr, time: Date.now() };
-      if (newObj.type != "") {
-        let taskRef = firebase
-          .database()
-          .ref(firebase.auth().currentUser.uid)
-          .child("tasks")
-          .child(newObj.type)
-          .set(newObj.time);
-      }
+    let newStr = this.state.value;
+    console.log(newStr);
+    let newObj = { type: newStr, time: Date.now() };
+    if (newObj.type !== "") {
+      let taskRef = firebase
+        .database()
+        .ref(firebase.auth().currentUser.uid)
+        .child("tasks")
+        .child(newObj.type)
+        .set(newObj.time);
     }
     this.setState({ isClicked: true, value: "" });
-    console.log(this.state.value);
   };
 
   setisClickedFalse = () => {
@@ -77,9 +71,6 @@ export default class EnterTasks extends Component {
     if (this.state.redirect) {
       return <Redirect to="/login" />;
     }
-    if (this.state.badSubmit) {
-      alert("Please enter tasks first!");
-    }
     return (
       <div>
         <CompletedTasks />
@@ -88,7 +79,7 @@ export default class EnterTasks extends Component {
           <FormGroup controlId="formBasicText">
             <FormControl
               type="text"
-              placeholder="Enter text"
+              placeholder="Task"
               value={this.state.value}
               onChange={this.handleChange}
             />
@@ -98,7 +89,7 @@ export default class EnterTasks extends Component {
               bsSize="xsmall"
               onClick={this.handleClick}
             >
-              Add task
+              Add
             </Button>
           </FormGroup>
         </form>
