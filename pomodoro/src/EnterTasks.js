@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from "react-router-dom";
 import {
   Checkbox,
   Radio,
@@ -9,8 +9,9 @@ import {
   HelpBlock,
   Button
 } from "react-bootstrap";
+import CompletedTasks from "./CompletedTasks";
 import firebase from "./Firebase.js";
-import { logout } from './Auth.js';
+import { logout } from "./Auth.js";
 export default class EnterTasks extends Component {
   constructor(props) {
     super(props);
@@ -31,9 +32,14 @@ export default class EnterTasks extends Component {
 
   handleClick = e => {
     if (this.state.value !== null) {
-      let newTask = this.state.tasks;
-      newTask.push(this.state.value);
-      this.setState({ tasks: newTask });
+      let newTaskList = this.state.tasks;
+      let newStr = this.state.value;
+      let newObj = {
+        type: newStr,
+        time: Date.now()
+      };
+      newTaskList.push(newObj);
+      this.setState({ tasks: newTaskList });
     }
     this.setState({ isClicked: true });
   };
@@ -49,9 +55,13 @@ export default class EnterTasks extends Component {
       this.handleClick();
       this.setisClickedFalse();
       this.setState({ tasks: [] });
-      let taskRef = firebase.database().ref("tasks");
-      taskRef.child("firstset").set({
-        tasks: this.state.tasks
+      this.state.tasks.map(obj => {
+        let taskRef = firebase
+          .database()
+          .ref(firebase.auth().currentUser.uid)
+          .child("tasks")
+          .child(obj.type)
+          .set(obj.time);
       });
       // const thesetasks = {
       //   tasks: this.state.tasks
@@ -83,17 +93,21 @@ export default class EnterTasks extends Component {
   };
 
   logout = () => {
-    console.log("what")
-    firebase.auth().signOut().then(function () {
-      // Sign-out successful.
-      return <Redirect to='/iEat' />
-    }).catch(function (error) {
-      // An error happened.
-    });
+    console.log("what");
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        // Sign-out successful.
+        return <Redirect to="/login" />;
+      })
+      .catch(function(error) {
+        // An error happened.
+      });
     this.setState({
       redirect: true
-    })
-  }
+    });
+  };
   render() {
     console.log(this.state.tasks);
     if (this.state.isClicked) {
@@ -101,10 +115,11 @@ export default class EnterTasks extends Component {
       this.setisClickedFalse();
     }
     if (this.state.redirect) {
-      return <Redirect to='/login' />
+      return <Redirect to="/login" />;
     }
     return (
       <div>
+        <CompletedTasks />
         <ControlLabel>Enter completed tasks below:</ControlLabel>
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleClick}>
           Add task

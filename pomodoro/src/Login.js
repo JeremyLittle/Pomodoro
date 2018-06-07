@@ -18,32 +18,47 @@ export default class Login extends Component {
   }
 
   componentDidMount(){
-    firebase.auth().onAuthStateChanged((user) => {
-        console.log(user)
-        if (user!==null) {
-          this.setState({
-            user: true
-          })
-        } else {
-          user: false
-        }
-      });
+      this.checkUser()
   }
 
-  updateField = (field, value) => {
-    this.setState({
-      [field]: value
-    });
-  };
+    updateField = (field, value) => {
+        this.setState({
+        [field]: value
+        });
+    };
+
+    signIn=()=>{
+        console.log(this.state)
+        firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
+        .catch(error=>{
+            alert("Login failed - "+error.message);
+        })
+        this.checkUser();
+    }
+
+    checkUser=()=>{
+        firebase.auth().onAuthStateChanged((user) => {
+            console.log(user)
+            if (user!==null) {
+            this.setState({
+                user: true
+            })
+            } else {
+                user: false
+            }
+        });
+    }
 
     render(){
+        console.log(this.state)
         if(this.state.user){
-            return <Redirect to = '/entertasks'/>
+            return <Redirect to = '/timer'/>
         }
         return(
             <div className = "loginform">
                 <img src={tomato} className = "tomato"/>
                 <div className = "loginbox">
+                    <h1 id = "logintitle"> Log In </h1>
                     Email:  
                     <input
                         name = "username"
@@ -52,7 +67,6 @@ export default class Login extends Component {
                         onChange = {e=>this.updateField("username",e.target.value)}
                     />
                     <br></br>
-                    <br></br>
                     Password: 
                     <input
                         name = "password"
@@ -60,22 +74,17 @@ export default class Login extends Component {
                         value = {this.state.password}
                         onChange = {e=>this.updateField("password",e.target.value)}
                     />
-                    <ButtonToolbar>
-                        <button onClick={e=>this.handleClick(e)}>
+                    <br></br>
+                        <button id = "loginbut" onClick={this.signIn}>
                             {" "}
                             Log In {" "}
                         </button>
-                        <Link to = "./Register">
-                        <button>
-                            {" "}
-                            Register {" "}
-                        </button> 
-                        </Link>
-                        <button onClick = {logout}>
-                            {" "}
-                            Log out {" "}
-                        </button>
-                    </ButtonToolbar>
+                </div>
+                <div className = "register">
+                    <p id = "registerlink">Don't have an account?  </p>
+                    <Link to = "./Register">
+                    <p id = "registerlink2"> Register </p>
+                    </Link>
                 </div>
             </div>
                 
