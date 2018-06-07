@@ -2,7 +2,7 @@ import * as firebase from "firebase";
 import "firebase/auth";
 
 const config = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY, //'AIzaSyDrsrZyL1WB9dPyuxGWF8toSqHvnXK1hQE'
+    apiKey: 'AIzaSyDrsrZyL1WB9dPyuxGWF8toSqHvnXK1hQE',//process.env.REACT_APP_FIREBASE_API_KEY, //
     authDomain: 'pomodoro-18245.firebaseapp.com',
     databaseURL: 'https://pomodoro-18245.firebaseio.com',
     projectId: 'pomodoro-18245',
