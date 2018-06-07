@@ -10,7 +10,11 @@ export default class Register extends Component {
     this.state = {
       username: "",
       password: "",
-      alert: false
+      alert: false,
+      name: "",
+      disablebut: false,
+      gender: "",
+      age: ""
     };
   }
 
@@ -20,6 +24,14 @@ export default class Register extends Component {
     });
   };
 
+  emptyInputs=()=>{
+      if(this.state.name === "" || this.state.age === "" || this.state.gender === ""){
+          return true; 
+      }
+      else{
+          return false; 
+      }
+  }
   handleClick = e => {
     auth(this.state.username, this.state.password)
       .then(user => {
@@ -32,9 +44,9 @@ export default class Register extends Component {
             email: this.state.username,
             tasks: "",
             cycles: "",
-            age: "",
-            gender: "",
-            birthday: "",
+            age: this.state.age,
+            gender: this.state.gender,
+            name: this.state.name,
             password: this.state.password
           };
           let newPostKey = firebase
@@ -55,7 +67,7 @@ export default class Register extends Component {
         <div className="registerbox">
           <h1 id="registertitle"> Register </h1>
           {this.state.alert && this.alertFail()}
-          Email:
+          Email
           <input
             name="username"
             id="usernameinput"
@@ -63,22 +75,50 @@ export default class Register extends Component {
             onChange={e => this.updateField("username", e.target.value)}
           />
           <br />
-          Password:
+          Password
           <input
             name="password"
             id="passwordinput"
             value={this.state.password}
             onChange={e => this.updateField("password", e.target.value)}
           />
+          <br/>
+          Name
+          <input
+            name = "name"
+            id = "input"
+            value = {this.state.name}
+            onChange={e => this.updateField("name", e.target.value)}
+          />
+          <br/>
+          Age
+          <input
+            type = "number"
+            name = "age"
+            id = "input"
+            value = {this.state.age}
+            onChange={!isNaN(this.state.age)&&(e => this.updateField("age", e.target.value))}
+          />
           <br />
-          <button id="registerbut" onClick={e => this.handleClick(e)}>
+          Gender
+          <select id = "input"  onChange = {e=>this.updateField("gender", e.target.value)}>
+              <option value = "Female">Female</option>
+              <option value = "Male">Male</option>
+              <option value = "Other">Other</option>
+          </select>
+          <br/>
+          <button id="registerbut" disabled = {this.emptyInputs()}
+          onClick={(!this.emptyInputs())&&(e => this.handleClick(e))}>
             {" "}
             Register{" "}
           </button>
         </div>
-        <Link to="./Login">
-          <button> Log In </button>
-        </Link>
+        <div className = "register">
+            <p id = "registerlink">Already registered?  </p>
+            <Link to = "./Login">
+            <p id = "registerlink2"> Login </p>
+            </Link>
+        </div>
       </div>
     );
   }

@@ -8,7 +8,6 @@ import firebase from "./Firebase.js";
 const breakSeconds = 2; //Break timer
 const workSeconds = 4; // Work timer
 
-let cyclesRef = firebase.database().ref();
 export default class Stopwatch extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +19,6 @@ export default class Stopwatch extends Component {
       startorStop: "Start"
     };
   }
-
   pauseClick = e => {
     //Flip state on pause button
     this.setState({ isPaused: !this.state.isPaused });
@@ -31,7 +29,14 @@ export default class Stopwatch extends Component {
       this.setState({ startorStop: "Start" });
     }
   };
-
+  updateFireCycles = () => {
+    // For pushing cycle counter to user cycle tracker on firebase
+    let cyclesRef = firebase
+      .database()
+      .ref(firebase.auth().currentUser.uid)
+      .child("cycles")
+      .set(this.state.cycles);
+  };
   switchTime = e => {
     // Function for switching the timer type
     if (this.state.clockType === "Work") {
@@ -50,21 +55,23 @@ export default class Stopwatch extends Component {
         clockType: "Work",
         startorStop: "Start"
       });
+      this.updateFireCycles();
     }
   };
-  updateFireCycles = () => {
-    // For pushing cycle counter to user cycle tracker on firebase
-    let taskRef = firebase
+  componentDidMount() {
+    const userRef = firebase
       .database()
-      .ref(firebase.auth().currentUser.uid)
-      .child("cycles")
-      .set(this.state.cycles);
-  };
+      .ref(firebase.auth().currentUser.uid + "/cycles");
+    userRef.on("value", snapshot => {
+      this.setState({
+        cycles: snapshot.val()
+      });
+    });
+  }
   render() {
-    this.updateFireCycles();
     return (
       <div className="center">
-        <h2 align="Center" className="text" style={{ "font-size": "35px" }}>
+        <h2 align="center" className="text" style={{ "font-size": "35px" }}>
           {" "}
           Cycle Timer
         </h2>

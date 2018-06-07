@@ -13,7 +13,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">Pomodoro stuff goes here.</p>
-        <Stopwatch/>
+        <Stopwatch />
         <Timer />
 
       </div>
