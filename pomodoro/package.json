@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.2.0",
     "antd": "^3.6.1",
     "firebase": "^5.0.4",
     "react": "^16.4.0",
-    "react-countdown-clock": "^2.4.0",
     "react-bootstrap": "^0.32.1",
+    "react-countdown-clock": "^2.4.0",
     "react-dom": "^16.4.0",
     "react-dropzone": "^4.2.11",
     "react-router": "^4.2.0",
