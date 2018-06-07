@@ -53,7 +53,6 @@ export default class EnterTasks extends Component {
       this.setisClickedFalse();
       this.setState({ tasks: [] });
       this.state.tasks.map(obj => {
-        console.log(obj);
         let newPostKey = firebase
           .database()
           .ref(firebase.auth().currentUser.uid)
