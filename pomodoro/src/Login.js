@@ -23,9 +23,12 @@ export default class Login extends Component {
         });
     };
 
-    signOut=()=>{
+    signIn=()=>{
         console.log(this.state)
         firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
+        .catch(error=>{
+            alert("Login failed - "+error.message);
+        })
         firebase.auth().onAuthStateChanged((user) => {
             console.log(user)
             if (user!==null) {
@@ -64,7 +67,7 @@ export default class Login extends Component {
                         onChange = {e=>this.updateField("password",e.target.value)}
                     />
                     <br></br>
-                        <button id = "loginbut" onClick={this.signOut}>
+                        <button id = "loginbut" onClick={this.signIn}>
                             {" "}
                             Log In {" "}
                         </button>

@@ -33,27 +33,17 @@ export default class Register extends Component {
                         cycles: "",
                         age: "",
                         gender: "",
+                        birthday: "",
                         password: this.state.password
                     }
                     let newPostKey = firebase.database().ref(userID).set(obj);
-                    /*let updates = {};
-                    let obj = {
-                        email: this.state.username,
-                        tasks: "",
-                        cycles: "",
-                        age: "",
-                        gender: "",
-                        password: this.state.password
-                    }
-                    updates[newPostKey]=obj
-                    this.setState({
-                        username: "",
-                        password: ""
-                    })
-                    return firebase.database().ref(userID).update(updates);*/
                 }
-            });
+            }).catch(error=>{
+                alert('Registration error: ' + error.message);
+            })
+
     }
+
 
     render(){
         console.log(this.state)
@@ -61,7 +51,7 @@ export default class Register extends Component {
             <div className = "registerform">
                 <div className = "registerbox">
                 <h1 id = "registertitle"> Register </h1>
-                {this.state.alertFail&&this.alertFail()}
+                {this.state.alert&&this.alertFail()}
                 Email: 
                 <input
                     name = "username"
