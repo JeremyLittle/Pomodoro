@@ -7,8 +7,8 @@ export default class Timer extends Component {
   render() {
     return (
       <div>
-        <EnterTasks />
         <Stopwatch />
+        <EnterTasks />
         <CompletedTasks />
       </div>
     );
