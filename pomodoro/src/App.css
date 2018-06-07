@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
 .App {
   text-align: center;
 }
@@ -7,22 +9,79 @@
   height: 80px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.loginform,
+.registerform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffb67a;
+  margin: auto;
+}
+
+.tomato {
+  margin-top: -6%;
+  width: 70%;
+  height: auto;
+}
+.loginbox,
+.registerbox {
+  text-align: center;
+  border-style: solid;
+  border-color: #ed8b36;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: center;
+  background-color: #fcc98f;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  margin-top: 2%;
+  border-radius: 20px;
+  font-family: "Open Sans Condensed", sans-serif;
+  padding-top: 3%;
+  padding-bottom: 4%;
+}
+#logintitle,
+#registertitle {
+  margin-top: 0;
+  font-family: "Open Sans Condensed", sans-serif;
+}
+#usernameinput,
+#passwordinput,
+#input {
+  width: 50%;
+  height: 20px;
+  margin: 0 auto;
+}
+.register {
+  display: flex;
+  flex-direction: row;
+}
+#loginbut,
+#registerbut {
+  width: 53%;
+  height: 30px;
+  margin: 0 auto;
+  border-radius: 20px;
+  background-color: #f78345;
   color: white;
+  border-color: #d16429;
 }
-
-.App-title {
-  font-size: 1.5em;
+#registerlink {
+  font-size: 12px;
 }
-
-.App-intro {
-  font-size: large;
+#registerlink2 {
+  font-size: 12px;
+  padding-left: 3%;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+body {
+  background-color: #ffb67a;
 }
