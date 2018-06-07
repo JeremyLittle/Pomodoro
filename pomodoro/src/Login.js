@@ -17,6 +17,10 @@ export default class Login extends Component {
     };
   }
 
+  componentDidMount(){
+      this.checkUser()
+  }
+
     updateField = (field, value) => {
         this.setState({
         [field]: value
@@ -29,6 +33,10 @@ export default class Login extends Component {
         .catch(error=>{
             alert("Login failed - "+error.message);
         })
+        this.checkUser();
+    }
+
+    checkUser=()=>{
         firebase.auth().onAuthStateChanged((user) => {
             console.log(user)
             if (user!==null) {
