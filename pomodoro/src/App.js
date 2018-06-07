@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Firebase from './Firebase.js';
 import Stopwatch from './Stopwatch.js';
 
 class App extends Component {
@@ -8,7 +7,6 @@ class App extends Component {
     return (
       <div className="App">
         <Stopwatch/>
-        {/* <Firebase /> */}
       </div>
     );
   }
