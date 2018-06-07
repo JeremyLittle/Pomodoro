@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import { render } from "react-dom";
 import "./Leaderboard.css";
 import "./p.css";
-import LeaderBoardForm from "./LeaderBoardForm";
+// import LeaderBoardForm from "./LeaderBoardForm";
 import firebase from "./Firebase";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -202,7 +202,7 @@ class Leaderboard extends React.Component {
         <Topbar />
         <br />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <center>
+        {/* <center>
           <Paper className={classes.root} elevation={4}>
             <LeaderBoardForm
               className="center"
@@ -214,7 +214,7 @@ class Leaderboard extends React.Component {
               }
             />
           </Paper>
-        </center>
+        </center> */}
 
         <center>
           <div class="pagebox">

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import ReactCountdownClock from "react-countdown-clock"; // https://www.npmjs.com/package/react-countdown-clocks
 import "./Stopwatch.css";
-import "antd/dist/antd.css";
-import { Button, Col, Row } from "antd";
-import firebase from "./Firebase.js";
+import 'antd/dist/antd.css';
+import { Button, Col, Row } from 'antd';
+import firebase from './Firebase.js';
 
-const breakSeconds = 2; //Break timer
-const workSeconds = 4; // Work timer
+const breakSeconds = 5*60;  //Break timer
+const workSeconds = 30*60;   // Work timer
 
 export default class Stopwatch extends Component {
   constructor(props) {

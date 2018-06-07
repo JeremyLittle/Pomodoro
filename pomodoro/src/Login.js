@@ -46,8 +46,13 @@ export default class Login extends Component {
         user: false;
       }
     });
-  };
-
+  }
+  onKeyDown = (e) => {
+    if (e.key === 'Enter'){
+        e.preventDefault();
+        this.signIn();
+    }
+}
   render() {
     if (this.state.user) {
       return <Redirect to="/timer" />;
@@ -71,6 +76,7 @@ export default class Login extends Component {
             id="passwordinput"
             value={this.state.password}
             onChange={e => this.updateField("password", e.target.value)}
+            onKeyDown={e => this.onKeyDown(e)}
           />
           <br />
           <button id="loginbut" onClick={this.signIn}>
