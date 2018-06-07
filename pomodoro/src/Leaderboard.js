@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import "./Leaderboard.css";
 import "./p.css";
 import LeaderBoardForm from "./LeaderBoardForm";
-import Firebase from "./Firebase";
+import firebase from "./Firebase";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -19,6 +19,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
+import Topbar from "./Topbar.js";
 
 const styles = theme => ({
   media: {
@@ -198,6 +199,8 @@ class Leaderboard extends React.Component {
     const { classes, theme } = this.props;
     return (
       <div className="App">
+        <Topbar />
+        <br />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <center>
           <Paper className={classes.root} elevation={4}>
