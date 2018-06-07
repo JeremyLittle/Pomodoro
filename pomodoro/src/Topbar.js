@@ -17,7 +17,9 @@ export default class Topbar extends Component {
           <Menu.Item key="profile">
             <Link to="/profile">Profile</Link>
           </Menu.Item>
-          <Menu.Item key="leaderboard">Leaderboard</Menu.Item>
+          <Menu.Item key="leaderboard">
+            <Link to="/leaderboard">Leaderboard</Link>
+          </Menu.Item>
         </Menu>
       </div>
     );

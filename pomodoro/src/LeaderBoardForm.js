@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 import { render } from "react-dom";
 import "./App.css";
 import PropTypes from "prop-types";
-import Firebase from "Firebase";
+import firebase from "./Firebase";
 
 const styles = theme => ({
   container: {

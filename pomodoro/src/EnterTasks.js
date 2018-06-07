@@ -23,7 +23,7 @@ export default class EnterTasks extends Component {
     };
   }
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   handleChange = e => {
     this.setState({ value: e.target.value });
@@ -62,13 +62,7 @@ export default class EnterTasks extends Component {
           .child(obj.type)
           .set(obj.time);
       });
-      // const thesetasks = {
-      //   tasks: this.state.tasks
-      // };
-      // taskRef.push(thesetasks);
     }
-    // console.log(firebase.auth().currentUser.uid);
-    // firebase.auth().currentUser.uid.set(this.state.tasks);
   };
 
   addEnterLine = () => {
@@ -98,7 +92,7 @@ export default class EnterTasks extends Component {
       .signOut()
       .then(function() {
         // Sign-out successful.
-        return <Redirect to="/login" />;
+        return <Redirect to="/iEat" />;
       })
       .catch(function(error) {
         // An error happened.
@@ -126,10 +120,7 @@ export default class EnterTasks extends Component {
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleSubmit}>
           Submit tasks
         </Button>
-        <button onClick={this.logout}>
-          {" "}
-          Log out {" "}
-        </button>
+        <button onClick={this.logout}> Log out </button>
       </div>
     );
   }
