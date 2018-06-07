@@ -4,8 +4,8 @@ import "./Stopwatch.css";
 import 'antd/dist/antd.css';
 import { Button, Col, Row } from 'antd';
 
-const breakSeconds = 2;  //Break timer
-const workSeconds = 4;   // Work timer
+const breakSeconds = 60*5;  //Break timer
+const workSeconds = 60*25;   // Work timer
 
 export default class Stopwatch extends Component {
     constructor(props){
@@ -51,8 +51,9 @@ export default class Stopwatch extends Component {
         console.log(this.state)
         return(
             <div className= "center">
-                <Row type = "flex" justify= "space-around" align = "center">
-                <Col span={4}>
+                <h2> Cycle Timer</h2>
+                <Row type = "flex" justify= "space-between" align = "middle">
+                <Col span={8}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
                     color="#000"
                     alpha={0.9}
@@ -64,8 +65,8 @@ export default class Stopwatch extends Component {
                     />
                 </Col>
                 
-                    <Col span={4} >
-                    <h4> {this.state.clockType} time </h4>
+                    <Col span={8} >
+                    <h4> {this.state.clockType} period!</h4>
                     <Button type = "primary"
                     onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </Button>
                     </Col>

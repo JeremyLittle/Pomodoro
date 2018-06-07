@@ -1,6 +1,11 @@
+
 .center{
     margin: auto;
     border: 8px solid #91a3f5;
     padding: 8px;
-    width:50%;
+    width:300px;
+}
+.text{
+    text-decoration: underline;
+    font-size: 14px; 
 }
