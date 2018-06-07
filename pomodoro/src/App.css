@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 .App {
   text-align: center;
 }
@@ -7,22 +8,48 @@
   height: 80px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.loginform{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
 }
 
-.App-title {
-  font-size: 1.5em;
+.tomato{
+  margin-top: -10%;
+  width: 70%;
+  height:auto;
+
+}
+.loginbox{
+  text-align: center;
+  border-style: solid;
+  border-color: #ed8b36;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: center;
+  background-color:#fcc98f;
+  height: 300px;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  border-radius: 20px;
 }
 
-.App-intro {
-  font-size: large;
+#usernameinput, #passwordinput{
+  width:50%;
+  height:8%;
+  margin: 0 auto;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+body{
+  background-color: #ffb67a;
 }
