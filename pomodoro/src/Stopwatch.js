@@ -22,10 +22,10 @@ export default class Stopwatch extends Component {
 
     pauseClick = e => {  //Flip state on pause button
         this.setState({isPaused:!this.state.isPaused});
-        if(isPaused == true){  // Check for which button string to display
-            this.setState({startorStop: "Start"})
+        if(this.state.isPaused === true){  // Check for which button string to display
+            this.setState({startorStop: "Stop"})
         }
-        else{ this.setState({startorStop:"Stop"})}
+        else{ this.setState({startorStop:"Start"})};
     }
     
     switchTime= e => {   // Function for switching the timer type
@@ -33,7 +33,8 @@ export default class Stopwatch extends Component {
         this.setState({
             isPaused: true,
             seconds: breakSeconds,
-            clockType: "Break"
+            clockType: "Break",
+            startorStop: "Start"
             });
         }
         else {     
@@ -43,6 +44,7 @@ export default class Stopwatch extends Component {
             seconds: workSeconds,
             cycles: newCycles,
             clockType: "Work",
+            startorStop: "Start"
         });
         };
     }
@@ -50,9 +52,7 @@ export default class Stopwatch extends Component {
         console.log(this.state)
         return(
             <div className= "center">
-                <Grid>
-                <Row>
-                    <Col  md ={2}>
+                    <div  md ={2}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
                     color="#000"
                     alpha={0.9}
@@ -62,14 +62,13 @@ export default class Stopwatch extends Component {
                     paused = {this.state.isPaused}   // Pause timer
                     /* pausedText = {this.state.pauseString} */
                     />
-                    </Col>
-                    <Col  md={4}>
+                    </div>
+                    <div  md={4}>
                     <h4> {this.state.clockType} time </h4>
-                    <Button bsStyle = "info"
-                    onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </Button>
-                    </Col>
-                </Row>
-                </Grid>
+                    <button bsStyle = "info"
+                    onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </button>
+                    </div>
+              
             </div>
         );
     }
