@@ -39,13 +39,14 @@
   margin: 0 auto;
   position: center;
   background-color:#fcc98f;
-  height: 300px;
   display: flex;
   flex: 0 1 auto;
   flex-direction: column;
   margin-top: 2%;
   border-radius: 20px;
   font-family: 'Open Sans Condensed', sans-serif;
+  padding-top: 3%;
+  padding-bottom: 4%;
 }
 #logintitle,#registertitle{
   margin-top: 0;
@@ -53,7 +54,7 @@
 }
 #usernameinput, #passwordinput, #input{
   width:50%;
-  height:8%;
+  height: 20px;
   margin: 0 auto;
 }
 .register{
@@ -62,7 +63,7 @@
 }
 #loginbut,#registerbut{
   width:53%;
-  height:8%;
+  height:30px;
   margin: 0 auto;
   border-radius:20px;
   background-color: #f78345;
