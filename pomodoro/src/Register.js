@@ -27,21 +27,18 @@ export default class Register extends Component {
         console.log(this.state);
         console.log(user.user.uid);
         let userID = user.user.uid;
+        let obj = {
+          email: this.state.username,
+          tasks: "",
+          cycles: "",
+          age: "",
+          gender: "",
+          password: this.state.password
+        };
         let newPostKey = firebase
           .database()
-          .ref("/users/" + userID)
-          .child("info")
-          .push().key;
-        let updates = {};
-        updates["/info/" + newPostKey] = this.state.username;
-        this.setState({
-          username: "",
-          password: ""
-        });
-        return firebase
-          .database()
-          .ref("/users/" + userID)
-          .update(updates);
+          .ref(userID)
+          .set(obj);
       }
     });
   };
