@@ -59,13 +59,11 @@ export default class Stopwatch extends Component {
         const userRef= firebase.database()
         .ref(firebase.auth().currentUser.uid +"/cycles");
             userRef.on("value", snapshot => {
-                console.log(snapshot.val())
                this.setState({ cycles: snapshot.val()
                });
             });
     }
     render(){
-        console.log(this.state);
         return(
             <div className= "center">
                 <h2 align= "center" className = "text" style={{"font-size":"35px"}}> Cycle Timer</h2>
