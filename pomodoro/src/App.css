@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 .App {
   text-align: center;
 }
@@ -8,7 +9,7 @@
   height: 80px;
 }
 
-.loginform{
+.loginform,.registerform{
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -23,12 +24,12 @@
 }
 
 .tomato{
-  margin-top: -10%;
+  margin-top: -6%;
   width: 70%;
   height:auto;
 
 }
-.loginbox{
+.loginbox,.registerbox{
   text-align: center;
   border-style: solid;
   border-color: #ed8b36;
@@ -42,13 +43,38 @@
   display: flex;
   flex: 0 1 auto;
   flex-direction: column;
+  margin-top: 2%;
   border-radius: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
-
+#logintitle,#registertitle{
+  margin-top: 0;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
 #usernameinput, #passwordinput{
   width:50%;
   height:8%;
   margin: 0 auto;
+}
+.register{
+  display: flex;
+  flex-direction: row;
+}
+#loginbut,#registerbut{
+  width:53%;
+  height:8%;
+  margin: 0 auto;
+  border-radius:20px;
+  background-color: #f78345;
+  color:white;
+  border-color: #d16429;
+}
+#registerlink{
+  font-size: 12px;
+}
+#registerlink2{
+  font-size:12px;
+  padding-left: 3%;
 }
 body{
   background-color: #ffb67a;
