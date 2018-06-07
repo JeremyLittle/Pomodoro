@@ -5,8 +5,8 @@ import 'antd/dist/antd.css';
 import { Button, Col, Row } from 'antd';
 import firebase from './Firebase.js';
 
-const breakSeconds = 2;  //Break timer
-const workSeconds = 4;   // Work timer
+const breakSeconds = 5*60;  //Break timer
+const workSeconds = 25*60;   // Work timer
 
 let cyclesRef = firebase.database().ref();
 export default class Stopwatch extends Component {
@@ -61,7 +61,7 @@ export default class Stopwatch extends Component {
         this.updateFireCycles();
         return(
             <div className= "center">
-                <h2 align= "Center" className = "text" style={{"font-size":"35px"}}> Cycle Timer</h2>
+                <h2 align= "center" className = "text" style={{"font-size":"35px"}}> Cycle Timer</h2>
                 <Row type = "flex" justify= "space-between" align = "middle">
                 <Col span={8}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
