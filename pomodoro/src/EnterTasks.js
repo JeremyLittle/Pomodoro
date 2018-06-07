@@ -53,7 +53,7 @@ export default class EnterTasks extends Component {
       .signOut()
       .then(function() {
         // Sign-out successful.
-        return <Redirect to="/login" />;
+        return <Redirect to="/iEat" />;
       })
       .catch(function(error) {
         // An error happened.
