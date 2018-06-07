@@ -7,7 +7,8 @@ import {
   ControlLabel,
   FormControl,
   HelpBlock,
-  Button
+  Button,
+  Alert
 } from "react-bootstrap";
 import firebase from "./Firebase.js";
 import { logout } from "./Auth.js";
@@ -20,17 +21,21 @@ export default class EnterTasks extends Component {
       tasks: [],
       enter: [],
       isClicked: false,
-      redirect: false
+      redirect: false,
+      badSubmit: false,
+      isChanged: false
     };
   }
 
   componentDidMount() {}
 
   handleChange = e => {
-    this.setState({ value: e.target.value });
+    console.log(this.state.value);
+    this.setState({ value: e.target.value, isChanged: true });
   };
 
   handleClick = e => {
+    // this.state.isChanged
     if (this.state.value !== null) {
       let newTaskList = this.state.tasks;
       let newStr = this.state.value;
@@ -38,34 +43,20 @@ export default class EnterTasks extends Component {
       newTaskList.push(newObj);
       this.setState({ tasks: newTaskList });
     }
-    this.setState({ isClicked: true });
+    this.setState({ isClicked: true, value: "" });
+    console.log(this.state.value);
+    // if (this.state.value.length >= 0 || this.state.isChanged) {
+    //   this.setState({ isClicked: true });
+    // }
+    // this.setState({ isChanged: false });
   };
 
   setisClickedFalse = () => {
     this.setState({ isClicked: false });
   };
 
-  handleSubmit = () => {
-    if (this.state.tasks === null) {
-      console.log("Please input some tasks!");
-    } else {
-      this.handleClick();
-      this.setisClickedFalse();
-      this.setState({ tasks: [] });
-      this.state.tasks.map(obj => {
-        let newPostKey = firebase
-          .database()
-          .ref(firebase.auth().currentUser.uid)
-          .child("tasks")
-          .child(obj.type)
-          .set(obj.time);
-      });
-    }
-  };
-
   addEnterLine = () => {
-    let newEnter = this.state.enter;
-    newEnter.push(
+    let newEnter = (
       <form>
         <FormGroup controlId="formBasicText">
           <FormControl
@@ -81,6 +72,24 @@ export default class EnterTasks extends Component {
       </form>
     );
     this.setState({ enter: newEnter });
+  };
+
+  handleSubmit = () => {
+    if (this.state.tasks.length === 0) {
+      this.setState({ badSubmit: true });
+    } else {
+      this.handleClick();
+      this.setisClickedFalse();
+      this.setState({ tasks: [] });
+      this.state.tasks.map(obj => {
+        let newPostKey = firebase
+          .database()
+          .ref(firebase.auth().currentUser.uid)
+          .child("tasks")
+          .child(obj.type)
+          .set(obj.time);
+      });
+    }
   };
 
   logout = () => {
@@ -107,17 +116,21 @@ export default class EnterTasks extends Component {
     if (this.state.redirect) {
       return <Redirect to="/login" />;
     }
+    if (this.state.badSubmit) {
+      alert("Please enter tasks first!");
+    }
     return (
       <div>
         <ControlLabel>Enter completed tasks below:</ControlLabel>
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleClick}>
           Add task
         </Button>
-        {this.state.enter.map(comp => comp)}
+        {/* {this.state.enter.map(comp => comp)} */}
+        {this.state.enter}
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleSubmit}>
           Submit tasks
         </Button>
-        <button onClick={this.logout}> Log out </button>
+        <Button onClick={this.logout}> Log out </Button>
       </div>
     );
   }

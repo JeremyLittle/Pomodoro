@@ -23,12 +23,10 @@ export default class Login extends Component {
   };
 
   signOut = () => {
-    console.log(this.state);
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.username, this.state.password);
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
       if (user !== null) {
         this.setState({
           user: true
@@ -40,10 +38,12 @@ export default class Login extends Component {
   };
 
   render() {
-    console.log(this.state);
     if (this.state.user) {
       return <Redirect to="/timer" />;
     }
+    // else if (this.state.user === false) {
+    //   return <div> Username or password is incorrect </div>;
+    // }
     return (
       <div className="loginform">
         <img src={tomato} className="tomato" />
