@@ -98,6 +98,7 @@ export default class EnterTasks extends Component {
       redirect: true
     });
   };
+
   render() {
     if (this.state.isClicked) {
       this.addEnterLine();
