@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import firebase from "./firebase.js";
+import firebase from "./Firebase.js";
 
 export default class CompletedTasks extends Component {
   constructor(props) {

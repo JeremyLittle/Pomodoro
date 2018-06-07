@@ -1,11 +1,13 @@
-import { ref, firebaseAuth } from "./firebase.js";
+import { ref, firebaseAuth } from './Firebase.js';
+import firebase from './Firebase.js';
+import Redirect from 'react-router-dom';
+export function auth (email, pw) {
 
-export function auth(email, pw) {
-  return firebaseAuth().createUserWithEmailAndPassword(email, pw);
+ return firebaseAuth().createUserWithEmailAndPassword(email, pw);
 }
 
 export function logout() {
-  return firebaseAuth().signOut();
+  return firebaseAuth().signOut()
 }
 
 export function login(email, pw) {
