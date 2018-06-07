@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactCountdownClock from 'react-countdown-clock'; // https://www.npmjs.com/package/react-countdown-clocks
 import "./Stopwatch.css";
-
+import 'antd/dist/antd.css';
+import { Button, Col, Row } from 'antd';
 
 const breakSeconds = 2;  //Break timer
 const workSeconds = 4;   // Work timer
@@ -52,7 +53,8 @@ export default class Stopwatch extends Component {
         console.log(this.state)
         return(
             <div className= "center">
-                    <div  md ={2}>
+                <Row gutter={8}>
+                <Col span={12}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
                     color="#000"
                     alpha={0.9}
@@ -62,13 +64,14 @@ export default class Stopwatch extends Component {
                     paused = {this.state.isPaused}   // Pause timer
                     /* pausedText = {this.state.pauseString} */
                     />
-                    </div>
-                    <div  md={4}>
+                </Col>
+                
+                    <Col span={12} >
                     <h4> {this.state.clockType} time </h4>
-                    <button bsStyle = "info"
-                    onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </button>
-                    </div>
-              
+                    <Button type = "primary"
+                    onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </Button>
+                    </Col>
+                    </Row>
             </div>
         );
     }
