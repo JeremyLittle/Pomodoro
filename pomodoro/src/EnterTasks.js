@@ -9,6 +9,7 @@ import {
   Button
 } from "react-bootstrap";
 import firebase from "./firebase.js";
+import CompletedTasks from "./CompletedTasks";
 
 export default class EnterTasks extends Component {
   constructor(props) {
@@ -49,7 +50,8 @@ export default class EnterTasks extends Component {
       this.setState({ tasks: [] });
       let taskRef = firebase.database().ref("tasks");
       const thesetasks = {
-        tasks: this.state.tasks
+        tasks: this.state.tasks,
+        time: Date.now()
       };
       taskRef.push(thesetasks);
     }
@@ -86,6 +88,7 @@ export default class EnterTasks extends Component {
 
     return (
       <div>
+        <CompletedTasks />
         <ControlLabel>Enter completed tasks below:</ControlLabel>
         <Button bsStyle="primary" bsSize="xsmall" onClick={this.handleClick}>
           Add task
