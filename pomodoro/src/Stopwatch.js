@@ -17,10 +17,8 @@ export default class Stopwatch extends Component {
             cycles: 0,
             startorStop: "Start"
 
-        })
-        
+        })   
     }
-
     pauseClick = e => {  //Flip state on pause button
         this.setState({isPaused:!this.state.isPaused});
         if(this.state.isPaused === true){  // Check for which button string to display
@@ -53,8 +51,8 @@ export default class Stopwatch extends Component {
         console.log(this.state)
         return(
             <div className= "center">
-                <Row gutter={8}>
-                <Col span={12}>
+                <Row type = "flex" justify= "space-around" align = "center">
+                <Col span={4}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
                     color="#000"
                     alpha={0.9}
@@ -66,7 +64,7 @@ export default class Stopwatch extends Component {
                     />
                 </Col>
                 
-                    <Col span={12} >
+                    <Col span={4} >
                     <h4> {this.state.clockType} time </h4>
                     <Button type = "primary"
                     onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </Button>
