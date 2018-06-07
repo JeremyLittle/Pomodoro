@@ -66,7 +66,7 @@ export default class Stopwatch extends Component {
                     <Col  md={4}>
                     <h4> {this.state.clockType} time </h4>
                     <Button bsStyle = "info"
-                    onClick ={e=>this.pauseClick(e)}> Start/Stop </Button>
+                    onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </Button>
                     </Col>
                 </Row>
                 </Grid>
