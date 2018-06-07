@@ -3,9 +3,11 @@ import ReactCountdownClock from 'react-countdown-clock'; // https://www.npmjs.co
 import "./Stopwatch.css";
 import 'antd/dist/antd.css';
 import { Button, Col, Row } from 'antd';
+import firebase from './Firebase.js';
 
 const breakSeconds = 60*5;  //Break timer
 const workSeconds = 60*25;   // Work timer
+
 
 export default class Stopwatch extends Component {
     constructor(props){
@@ -51,7 +53,7 @@ export default class Stopwatch extends Component {
         console.log(this.state)
         return(
             <div className= "center">
-                <h2> Cycle Timer</h2>
+                <h2 align= "Center" className = "text" style={{"font-size":"35px"}}> Cycle Timer</h2>
                 <Row type = "flex" justify= "space-between" align = "middle">
                 <Col span={8}>
                     <ReactCountdownClock seconds={this.state.seconds} //Imported react component
@@ -61,12 +63,10 @@ export default class Stopwatch extends Component {
                     size={100}
                     onComplete = {e=>this.switchTime(e)}  // Complete callback
                     paused = {this.state.isPaused}   // Pause timer
-                    /* pausedText = {this.state.pauseString} */
                     />
                 </Col>
-                
                     <Col span={8} >
-                    <h4> {this.state.clockType} period!</h4>
+                    <h4 className= "text" > {this.state.clockType} period!</h4>
                     <Button type = "primary"
                     onClick ={e=>this.pauseClick(e)}> {this.state.startorStop} </Button>
                     </Col>
