@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ButtonToolbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import firebase from "./Firebase.js";
-import { auth } from "./Auth.js";
+import { auth, logout } from "./Auth.js";
 
 export default class Register extends Component {
   constructor(props) {
@@ -53,6 +53,15 @@ export default class Register extends Component {
             .database()
             .ref(userID)
             .set(obj);
+          this.setState({
+              username: "",
+              age: "",
+              name: "",
+              password: ""
+            
+          })
+          alert("Registration successful. Please login.")
+          logout();
         }
       })
       .catch(error => {
@@ -101,7 +110,7 @@ export default class Register extends Component {
           />
           <br />
           Gender
-          <select id = "input"  onChange = {e=>this.updateField("gender", e.target.value)}>
+          <select id = "input" onChange = {e=>this.updateField("gender", e.target.value)}>
               <option value = "Female">Female</option>
               <option value = "Male">Male</option>
               <option value = "Other">Other</option>
