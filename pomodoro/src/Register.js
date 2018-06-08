@@ -46,7 +46,7 @@ export default class Register extends Component {
           let obj = {
             email: this.state.username,
             tasks: "",
-            cycles: "",
+            cycles: 0,
             age: this.state.age,
             gender: this.state.gender,
             name: this.state.name,

@@ -165,10 +165,15 @@ class Leaderboard extends React.Component {
         var pic = pictures[Math.floor(Math.random() * pictures.length)];
         objects[obj].picture = pic;
         sorted.push(objects[obj]);
+        count++;
+        if (count == 11) {
+          break;
+        }
       }
       sorted.sort(function(a, b) {
         return b.cycles - a.cycles;
       });
+      count = 1;
       for (let obj in sorted) {
         if (count == 1) sorted[obj].color = "yellow";
         else if (count == 2) {
@@ -184,6 +189,7 @@ class Leaderboard extends React.Component {
 
         sorted[obj].rank = count;
         count++;
+        if (count == 11) break;
       }
       var top3 = sorted.splice(0, sorted.indexOf(z));
       var one = top3.splice(0, top3.indexOf(x));
