@@ -40,13 +40,17 @@ export default class Topbar extends Component {
           <Menu.Item key="leaderboard">
             <Link to="/leaderboard">Leaderboard</Link>
           </Menu.Item>
+          <Menu.Item disabled="true">
           <div>
             {" "}
             Currently logged into {this.state.name}
+            </div>
+            </Menu.Item>
+            <Menu.Item>
             <Button key="logout" type="danger" className="logout">
               <Link to="/logout">Logout</Link>
             </Button>
-          </div>
+            </Menu.Item>
         </Menu>
       </div>
     );
