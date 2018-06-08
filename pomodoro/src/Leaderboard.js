@@ -56,7 +56,9 @@ const styles = theme => ({
     height: 38,
     width: 38
   },
-
+  image: {
+    height: 300
+  },
   root: theme.mixins.gutters({
     display: "flex",
     paddingTop: 30,
@@ -122,7 +124,7 @@ class Leaderboard extends React.Component {
     array2.push(object);
     this.setState({ array: array2 });
 
-    const list = firebase.database().ref("users");
+    const list = firebase.database().ref();
     list.push(object);
   };
 
@@ -165,10 +167,15 @@ class Leaderboard extends React.Component {
         var pic = pictures[Math.floor(Math.random() * pictures.length)];
         objects[obj].picture = pic;
         sorted.push(objects[obj]);
+        count++;
+        if (count == 11) {
+          break;
+        }
       }
       sorted.sort(function(a, b) {
         return b.cycles - a.cycles;
       });
+      count = 1;
       for (let obj in sorted) {
         if (count == 1) sorted[obj].color = "yellow";
         else if (count == 2) {
@@ -184,6 +191,7 @@ class Leaderboard extends React.Component {
 
         sorted[obj].rank = count;
         count++;
+        if (count == 11) break;
       }
       var top3 = sorted.splice(0, sorted.indexOf(z));
       var one = top3.splice(0, top3.indexOf(x));
@@ -205,8 +213,10 @@ class Leaderboard extends React.Component {
 
         <center>
           <div class="pagebox">
-            <p class="w3-jumbo0">Leaderboard:</p>
-
+            <img
+              className={classes.image}
+              src="https://i.imgur.com/c8KR1GX.png"
+            />
             <div class="top3box">
               Top 10:
               {this.state.one.map(entry => (

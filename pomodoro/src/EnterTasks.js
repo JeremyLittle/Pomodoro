@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
 import {
   Checkbox,
   Radio,
@@ -19,8 +18,7 @@ export default class EnterTasks extends Component {
     this.state = {
       value: "",
       enter: [],
-      isClicked: false,
-      redirect: false
+      isClicked: false
     };
   }
 
@@ -30,7 +28,6 @@ export default class EnterTasks extends Component {
 
   handleClick = e => {
     let newStr = this.state.value;
-    console.log(newStr);
     let newObj = { type: newStr, time: Date.now() };
     if (newObj.type !== "") {
       let taskRef = firebase
@@ -47,28 +44,9 @@ export default class EnterTasks extends Component {
     this.setState({ isClicked: false });
   };
 
-  logout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(function() {
-        // Sign-out successful.
-        return <Redirect to="/iEat" />;
-      })
-      .catch(function(error) {
-        // An error happened.
-      });
-    this.setState({
-      redirect: true
-    });
-  };
-
   render() {
     if (this.state.isClicked) {
       this.setisClickedFalse();
-    }
-    if (this.state.redirect) {
-      return <Redirect to="/login" />;
     }
     return (
       <div>
@@ -91,7 +69,6 @@ export default class EnterTasks extends Component {
             </Button>
           </FormGroup>
         </form>
-        <Button onClick={this.logout}> Log out </Button>
       </div>
     );
   }
