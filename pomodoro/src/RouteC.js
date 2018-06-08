@@ -9,6 +9,7 @@ import firebase from "./Firebase.js";
 import Profile from "./Profile.js";
 import ImageDrop from "./ImageDrop";
 import Leaderboard from "./Leaderboard.js";
+import Logout from "./Logout.js";
 
 export default class RouteC extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class RouteC extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/image" component={ImageDrop} />
           <Route path="/leaderboard" component={Leaderboard} />
+          <Route path="/logout" component={Logout} />
         </div>
       </BrowserRouter>
     );
