@@ -25,10 +25,8 @@
   font-size: 50px;
 }
 
-.Fucking-clock {
-  margin-right: 180px;
-  margin-left: 0px;
-  padding-left: 0px;
+.Clock-center {
+  padding-right: 175px;
 }
 
 #Work-button {

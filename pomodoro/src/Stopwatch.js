@@ -71,16 +71,18 @@ export default class Stopwatch extends Component {
     return (
       <div className="center">
         <h4 className="text"> {this.state.clockType}!</h4>
-        <br />
-        <ReactCountdownClock
-          seconds={this.state.seconds} //Imported react component
-          color="#d16429"
-          font="Open Sans Condensed"
-          weight={30}
-          size={300}
-          onComplete={e => this.switchTime(e)} // Complete callback
-          paused={this.state.isPaused} // Pause timer
-        />
+
+        <div className="Clock-center">
+          <ReactCountdownClock
+            seconds={this.state.seconds} //Imported react component
+            color="#d16429"
+            font="Open Sans Condensed"
+            weight={30}
+            size={300}
+            onComplete={e => this.switchTime(e)} // Complete callback
+            paused={this.state.isPaused} // Pause timer
+          />
+        </div>
         <br />
         <button onClick={e => this.pauseClick(e)} id="Work-button">
           {" "}
