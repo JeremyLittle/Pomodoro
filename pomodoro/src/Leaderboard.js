@@ -130,7 +130,7 @@ class Leaderboard extends React.Component {
     const list = firebase.database().ref();
     list.on("value", snapshot => {
       let objects = snapshot.val();
-
+      console.log(snapshot.val());
       let sorted = [];
       var pictures = [
         "https://lh3.googleusercontent.com/-inZL_LqORKc/WBUmuFQ7TRI/AAAAAAAAE68/nw5n2k9aGyY72RFidHMZ66_SBrXdB1-AgCJoC/w530-h859-n/Poptropica%2BOctavian.png",

@@ -6,7 +6,7 @@ import { Button, Col, Row } from 'antd';
 import firebase from './Firebase.js';
 
 const breakSeconds = 5*60;  //Break timer
-const workSeconds = 30*60;   // Work timer
+const workSeconds = 25*60;   // Work timer
 
 export default class Stopwatch extends Component {
   constructor(props) {
