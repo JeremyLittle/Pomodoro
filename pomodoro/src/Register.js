@@ -122,6 +122,7 @@ export default class Register extends Component {
             id="input"
             onChange={e => this.updateField("gender", e.target.value)}
           >
+            <option value=" "> </option>
             <option value="Female">Female</option>
             <option value="Male">Male</option>
             <option value="Other">Other</option>
