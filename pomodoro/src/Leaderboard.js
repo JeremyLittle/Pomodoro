@@ -215,7 +215,7 @@ class Leaderboard extends React.Component {
           <div class="pagebox">
             <img
               className={classes.image}
-              src="https://i.imgur.com/c8KR1GX.png"
+              src="https://i.imgur.com/uk0bDSX.png"
             />
             <div class="top3box">
               Top 10:
