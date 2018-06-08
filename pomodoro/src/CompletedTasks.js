@@ -35,6 +35,7 @@ export default class CompletedTasks extends Component {
   }
 
   render() {
+    console.log("HELLOOO");
     return (
       <div>
         Tasks completed in the last 24 hours:
@@ -43,9 +44,10 @@ export default class CompletedTasks extends Component {
           if (Date.now() - task.time < 86400000) {
             return (
               <div>
-                -{task.name}
+                {task.name}
                 <br />
-                Time: {this.convertToDate(task.time)}
+                Time: {String(this.convertToDate(task.time)).substring(0, 21)}
+                <div />
               </div>
             );
           }
