@@ -122,12 +122,12 @@ class Leaderboard extends React.Component {
     array2.push(object);
     this.setState({ array: array2 });
 
-    const list = firebase.database().ref("users");
+    const list = firebase.database().ref();
     list.push(object);
   };
 
   componentDidMount() {
-    const list = firebase.database().ref("users");
+    const list = firebase.database().ref();
     list.on("value", snapshot => {
       let objects = snapshot.val();
 
