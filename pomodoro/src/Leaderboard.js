@@ -162,9 +162,20 @@ class Leaderboard extends React.Component {
         "https://poptropica.files.wordpress.com/2008/10/tinker.png"
       ];
       var count = 1;
-
+      var used = [];
+      var temp;
       for (let obj in objects) {
-        var pic = pictures[Math.floor(Math.random() * pictures.length)];
+        temp = Math.floor(Math.random() * pictures.length);
+
+        while (used.includes(temp)) {
+          temp = Math.floor(Math.random() * pictures.length);
+          console.log("hello");
+        }
+        used.push(temp);
+        console.log("Hello2");
+
+        var pic = pictures[temp];
+
         objects[obj].picture = pic;
         sorted.push(objects[obj]);
         count++;
