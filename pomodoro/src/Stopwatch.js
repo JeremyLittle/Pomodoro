@@ -69,6 +69,8 @@ export default class Stopwatch extends Component {
   }
   render() {
     return (
+      <div>
+      <br/>
       <div className="center">
         <h4 className="text"> {this.state.clockType}!</h4>
 
@@ -88,6 +90,7 @@ export default class Stopwatch extends Component {
           {" "}
           {this.state.startorStop}{" "}
         </button>
+      </div>
       </div>
     );
   }

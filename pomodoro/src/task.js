@@ -12,9 +12,9 @@ export default class Timer extends Component {
       <div className="Timer">
         <Topbar />
         <br />
-        <center>
-          <Stopwatch />
-        </center>
+        <EnterTasks />
+        <br />
+        <CompletedTasks />
       </div>
     );
   }
