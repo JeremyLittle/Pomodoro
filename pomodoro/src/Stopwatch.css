@@ -8,17 +8,20 @@
   width: 80%;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
   position: center;
   background-color: #fcc98f;
   display: flex;
   flex: 0 1 auto;
   flex-direction: column;
-  margin-top: 2%;
   border-radius: 20px;
   font-family: “Open Sans Condensed”, sans-serif;
   padding-top: 3%;
   padding-bottom: 4%;
+
+}
+
+.timer{
+  margin-top:2%;
 }
 .text {
   font-family: "Open Sans Condensed", sans-serif;
