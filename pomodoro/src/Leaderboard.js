@@ -56,7 +56,9 @@ const styles = theme => ({
     height: 38,
     width: 38
   },
-
+  image: {
+    height: 300
+  },
   root: theme.mixins.gutters({
     display: "flex",
     paddingTop: 30,
@@ -211,8 +213,10 @@ class Leaderboard extends React.Component {
 
         <center>
           <div class="pagebox">
-            <p class="w3-jumbo0">Leaderboard:</p>
-
+            <img
+              className={classes.image}
+              src="https://i.imgur.com/c8KR1GX.png"
+            />
             <div class="top3box">
               Top 10:
               {this.state.one.map(entry => (
