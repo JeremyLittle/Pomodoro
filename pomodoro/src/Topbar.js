@@ -40,6 +40,9 @@ export default class Topbar extends Component {
           <Menu.Item key="leaderboard">
             <Link to="/leaderboard">Leaderboard</Link>
           </Menu.Item>
+          <Menu.Item key="tasks">
+            <Link to="/tasks">Tasks</Link>
+          </Menu.Item>
           <Menu.Item disabled="true">
           <div>
             {" "}
