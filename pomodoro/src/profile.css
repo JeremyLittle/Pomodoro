@@ -1,4 +1,8 @@
-#profileimg{
-    width: 50%;
-    height: auto;
+#profileimg {
+  width: 50%;
+  height: auto;
+}
+
+#general {
+  background-color: #ffb67a;
 }
