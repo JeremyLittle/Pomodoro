@@ -1,11 +1,40 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
 .center {
   margin: auto;
-  border: 8px solid #d16429;
   padding: 8px;
-  width: 300px;
+  text-align: center;
+  border-style: solid;
+  border-color: #ed8b36;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: center;
+  background-color: #fcc98f;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  margin-top: 2%;
+  border-radius: 20px;
+  font-family: “Open Sans Condensed”, sans-serif;
+  padding-top: 3%;
+  padding-bottom: 4%;
 }
 .text {
   font-family: "Open Sans Condensed", sans-serif;
-  font-size: 20px;
+  font-size: 50px;
+}
+
+.Clock-center {
+  padding-right: 175px;
+}
+
+#Work-button {
+  width: 53%;
+  height: 30px;
+  margin: 0 auto;
+  border-radius: 20px;
+  background-color: #f78345;
+  color: white;
+  border-color: #d16429;
 }
