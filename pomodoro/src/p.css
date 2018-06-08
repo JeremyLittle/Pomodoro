@@ -27,20 +27,17 @@ html {
   font-weight: bold;
   text-align: center;
   border-style: solid;
-  border-color: #24ed50;
+  border-color: #ed8b36;
   width: 100%;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   position: center;
-  background-color: #bded36;
+  background-color: #ed8b36;
   height: 100%;
   display: flex;
   flex: 0 1 auto;
   flex-direction: column;
-  margin-top: 2%;
-  border-radius: 20px;
-  padding-bottom: 40px;
 }
 .top3box {
   font-family: "Open Sans Condensed", sans-serif;
@@ -1175,9 +1172,11 @@ a {
 }
 
 .w3-jumbo0 {
-  font-size: 70px !important;
+  font: "Aviano Sans";
+  font-size: 90px !important;
   color: black !important;
   font-weight: bold;
+  text-decoration: underline;
 }
 .w3-jumbo1 {
   font-size: 30px !important;
