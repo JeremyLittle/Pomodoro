@@ -28,6 +28,9 @@ export default class CompletedTasks extends Component {
         };
         newState.push(newTask);
       }
+      newState.sort(function(a, b) {
+        return b.time - a.time;
+      });
       this.setState({
         userTasks: newState
       });
@@ -40,12 +43,16 @@ export default class CompletedTasks extends Component {
         Tasks completed in the last 24 hours:
         <br />
         {this.state.userTasks.map(task => {
+          console.log("HELLOOO");
+          console.log(task);
+          console.log(task.time);
           if (Date.now() - task.time < 86400000) {
             return (
               <div>
-                -{task.name}
+                {task.name}
                 <br />
-                Time: {this.convertToDate(task.time)}
+                Time: {String(this.convertToDate(task.time)).substring(0, 21)}
+                <div />
               </div>
             );
           }
